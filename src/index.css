@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'Blue Mirage';
+  src: url('/fonts/blue_mirage-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Blue Mirage';
+  src: url('/fonts/blue_mirage-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+body {
+  overflow-x: hidden;
+}
+
+.MuiAppBar-root.scrolled {
+  background-color: rgba(251, 246, 236, 0.88) !important;
+  backdrop-filter: saturate(140%) blur(12px) !important;
+  -webkit-backdrop-filter: saturate(140%) blur(12px) !important;
+  border-bottom-color: rgba(200, 168, 106, 0.5) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset !important;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(24px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
