@@ -21,7 +21,10 @@ create policy "public can insert rsvp"
   with check (consent = true);
 -- (no select / update / delete policy for anon → denied by default)
 
-create view public.rsvp_summary as
+-- View respects RLS: anon has no SELECT on rsvps, so with security_invoker returns nothing to anon; organisers read via dashboard/service_role (bypasses RLS)
+create view public.rsvp_summary
+  with (security_invoker = on)
+  as
   select created_at, full_name, email, phone, city,
          adults, children, (adults + children) as party_size,
          darshan_slot, notes
