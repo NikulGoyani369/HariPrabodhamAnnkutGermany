@@ -1,0 +1,242 @@
+import { useState, type FormEvent } from 'react'
+import {
+  Box, TextField, MenuItem, Checkbox, FormControlLabel, FormHelperText,
+  Button, Alert, Typography,
+} from '@mui/material'
+import { submitRsvp, type RsvpInput } from '../../api/rsvp'
+import { COUNTRIES, DARSHAN_SLOTS } from '../../data/data'
+import { C } from '../../theme/theme'
+import RsvpConfirmation from './RsvpConfirmation'
+import { rsvpFormStyles as s } from './RsvpForm.styles'
+
+type Status = 'idle' | 'submitting' | 'error' | 'success'
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+// Kill MUI menu open/close transitions in tests and keep interaction snappy.
+const SELECT_SLOT_PROPS = { select: { MenuProps: { transitionDuration: 0 } } } as const
+
+interface Props { onClose: () => void }
+
+export default function RsvpForm({ onClose }: Props) {
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [dialCode, setDialCode] = useState('+49')
+  const [phone, setPhone] = useState('')
+  const [city, setCity] = useState('')
+  const [adults, setAdults] = useState(1)
+  const [children, setChildren] = useState(0)
+  const [darshanSlot, setDarshanSlot] = useState('')
+  const [notes, setNotes] = useState('')
+  const [consent, setConsent] = useState(false)
+  const [company, setCompany] = useState('') // honeypot
+
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [status, setStatus] = useState<Status>('idle')
+  const [submitError, setSubmitError] = useState('')
+
+  const validate = () => {
+    const e: Record<string, string> = {}
+    const name = fullName.trim()
+    if (name.length < 2 || name.length > 80) e.fullName = 'Please enter your name (2–80 characters).'
+    if (!EMAIL_RE.test(email.trim())) e.email = 'Please enter a valid email address.'
+    const digits = phone.replace(/[\s-]/g, '')
+    if (!digits) e.phone = 'Please enter your phone number.'
+    else if (!/^\d{6,15}$/.test(digits)) e.phone = 'Please enter a valid phone number (6–15 digits).'
+    const c = city.trim()
+    if (c.length < 2 || c.length > 60) e.city = 'Please enter your city or mandal.'
+    if (!darshanSlot) e.darshanSlot = 'Please choose a darshan time slot.'
+    if (notes.length > 500) e.notes = 'Notes must be 500 characters or fewer.'
+    if (!consent) e.consent = 'Please confirm your consent to submit.'
+    return e
+  }
+
+  const handleSubmit = async (ev: FormEvent) => {
+    ev.preventDefault()
+    const e = validate()
+    setErrors(e)
+    if (Object.keys(e).length > 0) return
+
+    if (company.trim()) {
+      setStatus('success') // honeypot tripped — fake success, no network
+      return
+    }
+
+    setStatus('submitting')
+    setSubmitError('')
+    const payload: RsvpInput = {
+      fullName, email, dialCode, phone, city, adults, children, darshanSlot, notes, consent,
+    }
+    try {
+      await submitRsvp(payload)
+      setStatus('success')
+    } catch (err) {
+      console.error(err)
+      const msg = err instanceof Error ? err.message : ''
+      setSubmitError(
+        /fetch|network|Failed to fetch/i.test(msg)
+          ? "Couldn't reach the server. Check your connection and try again."
+          : 'Something went wrong submitting your RSVP. Please try again or contact us.',
+      )
+      setStatus('error')
+    }
+  }
+
+  if (status === 'success') {
+    return (
+      <RsvpConfirmation
+        name={fullName.trim()}
+        partySize={adults + children}
+        slot={darshanSlot}
+        onClose={onClose}
+      />
+    )
+  }
+
+  return (
+    <Box component="form" noValidate onSubmit={handleSubmit}>
+      <Box sx={s.grid}>
+        <TextField
+          sx={s.full}
+          label="Full name"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          error={!!errors.fullName}
+          helperText={errors.fullName}
+          fullWidth
+        />
+        <TextField
+          label="Email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          error={!!errors.email}
+          helperText={errors.email}
+          fullWidth
+        />
+        <TextField
+          label="City / Mandal"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          error={!!errors.city}
+          helperText={errors.city}
+          fullWidth
+        />
+        <TextField
+          select
+          label="Dial code"
+          value={dialCode}
+          onChange={(e) => setDialCode(e.target.value)}
+          slotProps={SELECT_SLOT_PROPS}
+          fullWidth
+        >
+          {COUNTRIES.map((c) => (
+            <MenuItem key={c.code} value={c.dialCode}>
+              {c.flag} {c.label} ({c.dialCode})
+            </MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          label="Phone"
+          value={phone}
+          onChange={(e) => setPhone(e.target.value)}
+          error={!!errors.phone}
+          helperText={errors.phone}
+          fullWidth
+        />
+        <TextField
+          select
+          label="Adults"
+          value={adults}
+          onChange={(e) => setAdults(Number(e.target.value))}
+          slotProps={SELECT_SLOT_PROPS}
+          fullWidth
+        >
+          {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
+            <MenuItem key={n} value={n}>{n}</MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          select
+          label="Children"
+          value={children}
+          onChange={(e) => setChildren(Number(e.target.value))}
+          slotProps={SELECT_SLOT_PROPS}
+          fullWidth
+        >
+          {Array.from({ length: 11 }, (_, i) => i).map((n) => (
+            <MenuItem key={n} value={n}>{n}</MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          select
+          sx={s.full}
+          label="Darshan time slot"
+          value={darshanSlot}
+          onChange={(e) => setDarshanSlot(e.target.value)}
+          error={!!errors.darshanSlot}
+          helperText={errors.darshanSlot}
+          slotProps={SELECT_SLOT_PROPS}
+          fullWidth
+        >
+          {DARSHAN_SLOTS.map((slot) => (
+            <MenuItem key={slot} value={slot}>{slot}</MenuItem>
+          ))}
+        </TextField>
+        <TextField
+          sx={s.full}
+          label="Notes (optional)"
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          error={!!errors.notes}
+          helperText={errors.notes || `${notes.length}/500`}
+          multiline
+          minRows={2}
+          fullWidth
+        />
+      </Box>
+
+      {/* Honeypot — visually hidden, not tab-reachable */}
+      <Box sx={s.honeypot} aria-hidden="true">
+        <label>
+          Company
+          <input
+            name="company"
+            tabIndex={-1}
+            autoComplete="off"
+            value={company}
+            onChange={(e) => setCompany(e.target.value)}
+          />
+        </label>
+      </Box>
+
+      <Box sx={{ mt: 1 }}>
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={consent}
+              onChange={(e) => setConsent(e.target.checked)}
+              slotProps={{ input: { 'aria-label': 'consent' } }}
+            />
+          }
+          label={
+            <Typography sx={{ fontSize: 13.5, color: C.muted }}>
+              I consent to my details being used to organise this event, per the{' '}
+              privacy notice.
+            </Typography>
+          }
+        />
+        {errors.consent && <FormHelperText error>{errors.consent}</FormHelperText>}
+      </Box>
+
+      {status === 'error' && (
+        <Alert severity="error" role="alert" sx={{ mt: 2 }}>{submitError}</Alert>
+      )}
+
+      <Box sx={s.submitRow}>
+        <Button type="submit" variant="contained" size="large" disabled={status === 'submitting'}>
+          {status === 'submitting' ? 'Submitting…' : 'Submit RSVP'}
+        </Button>
+      </Box>
+    </Box>
+  )
+}
