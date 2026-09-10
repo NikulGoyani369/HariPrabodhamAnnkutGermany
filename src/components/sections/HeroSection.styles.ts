@@ -26,7 +26,6 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
   },
 
   overline: {
-    fontFamily: '"Inter", system-ui, -apple-system, sans-serif',
     fontSize: { xs: '0.7rem', md: '0.78rem' },
     letterSpacing: '0.22em',
     textTransform: 'uppercase' as const,
@@ -58,7 +57,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     flexWrap: 'wrap',
     gap: '18px',
     mt: 2.5,
-    color: C.gold500,
+    color: C.maroon700,
     fontFamily: '"Blue Mirage", serif',
     fontSize: { xs: '1rem', md: '1.25rem' },
     '&::before, &::after': {
@@ -112,7 +111,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     fontSize: { xs: '0.52rem', md: '0.65rem' },
     letterSpacing: '0.12em',
     textTransform: 'uppercase' as const,
-    color: C.gold500,
+    color: C.maroon700,
     mt: { xs: 0.4, md: 0.75 },
     fontWeight: 600,
   },

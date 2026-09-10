@@ -52,7 +52,7 @@ function NotFoundPage() {
     <PageShell>
       <Box sx={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', px: 2 }}>
         <Typography sx={{ fontFamily: '"Blue Mirage", serif', fontSize: { xs: '5rem', md: '8rem' }, color: C.sand300, lineHeight: 1, mb: 1 }}>404</Typography>
-        <Typography variant="h4" sx={{ color: C.maroon800, mb: 1.5 }}>Page not found</Typography>
+        <Typography variant="h4" component="h1" sx={{ color: C.maroon800, mb: 1.5 }}>Page not found</Typography>
         <Button variant="contained" size="large" onClick={() => navigate('/')}>Back to Home</Button>
       </Box>
     </PageShell>

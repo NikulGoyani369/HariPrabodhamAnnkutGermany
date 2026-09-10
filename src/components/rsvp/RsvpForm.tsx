@@ -1,8 +1,9 @@
 import { useState, type FormEvent } from 'react'
 import {
-  Box, TextField, MenuItem, Checkbox, FormControlLabel, FormHelperText,
-  Button, Alert, Typography,
+  Box, TextField, MenuItem, Checkbox, FormControl, FormControlLabel, FormHelperText,
+  Button, Alert, Typography, Link,
 } from '@mui/material'
+import { Link as RouterLink } from 'react-router-dom'
 import { submitRsvp, type RsvpInput } from '../../api/rsvp'
 import { COUNTRIES, DARSHAN_SLOTS } from '../../data/data'
 import { C } from '../../theme/theme'
@@ -39,7 +40,7 @@ export default function RsvpForm({ onClose }: Props) {
     const name = fullName.trim()
     if (name.length < 2 || name.length > 80) e.fullName = 'Please enter your name (2–80 characters).'
     if (!EMAIL_RE.test(email.trim())) e.email = 'Please enter a valid email address.'
-    const digits = phone.replace(/[\s-]/g, '')
+    const digits = phone.replace(/\D/g, '')
     if (!digits) e.phone = 'Please enter your phone number.'
     else if (!/^\d{6,15}$/.test(digits)) e.phone = 'Please enter a valid phone number (6–15 digits).'
     const c = city.trim()
@@ -209,24 +210,38 @@ export default function RsvpForm({ onClose }: Props) {
         </label>
       </Box>
 
-      <Box sx={{ mt: 1 }}>
+      <FormControl
+        component="fieldset"
+        error={!!errors.consent}
+        sx={{ mt: 1, display: 'block' }}
+      >
         <FormControlLabel
           control={
             <Checkbox
+              id="consent"
               checked={consent}
               onChange={(e) => setConsent(e.target.checked)}
-              slotProps={{ input: { 'aria-label': 'consent' } }}
+              slotProps={{
+                input: {
+                  'aria-describedby': errors.consent ? 'consent-error' : undefined,
+                },
+              }}
             />
           }
           label={
             <Typography sx={{ fontSize: 13.5, color: C.muted }}>
               I consent to my details being used to organise this event, per the{' '}
-              privacy notice.
+              <Link component={RouterLink} to="/data-privacy">
+                privacy notice
+              </Link>
+              .
             </Typography>
           }
         />
-        {errors.consent && <FormHelperText error>{errors.consent}</FormHelperText>}
-      </Box>
+        {errors.consent && (
+          <FormHelperText id="consent-error">{errors.consent}</FormHelperText>
+        )}
+      </FormControl>
 
       {status === 'error' && (
         <Alert severity="error" role="alert" sx={{ mt: 2 }}>{submitError}</Alert>

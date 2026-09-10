@@ -66,6 +66,7 @@ export default function VenueSection() {
           </Typography>
           <Typography
             variant="h2"
+            component="h1"
             sx={{ mt: 1, color: C.maroon800, fontFamily: '"Blue Mirage", serif' }}
           >
             The Venue
@@ -91,6 +92,7 @@ export default function VenueSection() {
           <Box sx={{ p: { xs: 3.5, md: 6 } }}>
             <Typography
               variant="h2"
+              component="h3"
               sx={{
                 fontFamily: '"Blue Mirage", serif',
                 fontSize: { xs: '1.75rem', md: 'clamp(1.9rem, 3.4vw, 2.75rem)' },

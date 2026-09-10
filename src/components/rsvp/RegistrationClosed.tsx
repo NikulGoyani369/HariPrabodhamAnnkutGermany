@@ -3,7 +3,11 @@ import { Link as RouterLink } from 'react-router-dom'
 import { C } from '../../theme/theme'
 import { PEOPLE } from '../../data/data'
 
-export default function RegistrationClosed() {
+interface Props {
+  onClose: () => void
+}
+
+export default function RegistrationClosed({ onClose }: Props) {
   return (
     <Box sx={{ textAlign: 'center', py: { xs: 3, md: 4 } }}>
       <Typography
@@ -16,7 +20,12 @@ export default function RegistrationClosed() {
       <Typography sx={{ color: C.muted, fontSize: '0.95rem', mb: 2.5, maxWidth: 420, mx: 'auto' }}>
         Jai Swaminarayan. RSVP for the HariPrabodham Annakut has now closed. For any
         queries, please reach out through our{' '}
-        <Link component={RouterLink} to="/contact" sx={{ fontWeight: 600 }}>
+        <Link
+          component={RouterLink}
+          to="/contact"
+          onClick={onClose}
+          sx={{ fontWeight: 600 }}
+        >
           Contact page
         </Link>
         .

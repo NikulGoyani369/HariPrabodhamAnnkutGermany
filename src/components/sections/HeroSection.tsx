@@ -35,7 +35,7 @@ export default function HeroSection() {
         <Typography component="h1" sx={s.title}>
           {EVENT.title}
         </Typography>
-        <Typography variant="h3" sx={{ mt: 1, color: C.maroon700 }}>
+        <Typography variant="h3" component="p" sx={{ mt: 1, color: C.maroon700 }}>
           {EVENT.tagline}
         </Typography>
 

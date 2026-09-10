@@ -3,6 +3,10 @@ import { createClient } from "@supabase/supabase-js";
 export const config = { runtime: "edge" };
 
 export default async function handler(req: Request) {
+  if (!process.env.CRON_SECRET) {
+    return new Response("Not configured", { status: 500 });
+  }
+
   const auth = req.headers.get("authorization");
   if (auth !== `Bearer ${process.env.CRON_SECRET}`) {
     return new Response("Unauthorized", { status: 401 });

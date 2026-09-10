@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- PLACEHOLDER: replace your-domain.example with the deployed host -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://your-domain.example/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
   <url><loc>https://your-domain.example/venue</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>

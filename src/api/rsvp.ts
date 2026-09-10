@@ -30,8 +30,9 @@ export async function submitRsvp(input: RsvpInput): Promise<{ id: string }> {
     consent: input.consent,
   }
 
-  const { data, error } = await supabase.from('rsvps').insert(row).select('id').single()
+  const id = crypto.randomUUID()
+  const { error } = await supabase.from('rsvps').insert({ id, ...row })
 
   if (error) throw new Error(error.message)
-  return { id: (data as { id: string }).id }
+  return { id }
 }

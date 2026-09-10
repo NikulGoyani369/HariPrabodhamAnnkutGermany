@@ -35,6 +35,7 @@ export default function RsvpModal() {
       fullWidth
       fullScreen={isMobile}
       scroll="paper"
+      aria-labelledby="rsvp-dialog-title"
       slotProps={{
         paper: {
           sx: {
@@ -74,7 +75,7 @@ export default function RsvpModal() {
         >
           {open ? 'Reserve your place' : 'RSVP'}
         </Typography>
-        <Typography variant="h2" component="p" sx={{ fontFamily: '"Blue Mirage", serif', fontSize: { xs: '1.6rem', md: '2rem' }, lineHeight: 1.2 }}>
+        <Typography id="rsvp-dialog-title" variant="h2" component="p" sx={{ fontFamily: '"Blue Mirage", serif', fontSize: { xs: '1.6rem', md: '2rem' }, lineHeight: 1.2 }}>
           RSVP
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.25, mt: 2, mb: 1 }}>
@@ -84,7 +85,7 @@ export default function RsvpModal() {
         </Box>
       </DialogTitle>
       <DialogContent sx={{ px: { xs: 2, md: 4 }, pb: 4, pt: 2 }}>
-        {open ? <RsvpForm onClose={closeModal} /> : <RegistrationClosed />}
+        {open ? <RsvpForm onClose={closeModal} /> : <RegistrationClosed onClose={closeModal} />}
       </DialogContent>
     </Dialog>
   )

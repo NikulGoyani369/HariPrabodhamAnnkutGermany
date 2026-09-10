@@ -15,19 +15,21 @@ beforeEach(() => vi.clearAllMocks())
 describe('routing', () => {
   it('renders the landing hero at /', async () => {
     renderAt('/')
-    // Hero renders the tagline as a level-2 heading; the Footer repeats the
-    // tagline as plain text, so scope the assertion to the heading.
+    // Hero renders the event title as the page's single <h1>; the tagline
+    // below it is a plain <p>. Assert the hero heading rendered.
     expect(
-      await screen.findByRole('heading', { name: /the divine spark/i, level: 3 }),
+      await screen.findByRole('heading', { name: /annakut/i, level: 1 }),
     ).toBeInTheDocument()
+    // and the tagline text is present (Footer repeats it as plain text too).
+    expect(screen.getAllByText(/the divine spark/i).length).toBeGreaterThan(0)
   })
 
   it('renders the venue page at /venue', async () => {
     renderAt('/venue')
-    // VenueSection has two level-2 headings ("The Venue" and the venue name
-    // placeholder "Venue name"); match the section title specifically.
+    // On /venue the VenueSection is the page, so its "The Venue" title is the
+    // single <h1>; the venue-name-in-card is now an <h3>.
     expect(
-      await screen.findByRole('heading', { name: /the venue/i, level: 2 }),
+      await screen.findByRole('heading', { name: /the venue/i, level: 1 }),
     ).toBeInTheDocument()
   })
 
@@ -39,7 +41,8 @@ describe('routing', () => {
   it('sets the document title from usePageMeta', async () => {
     renderAt('/contact')
     // Wait for the lazy ContactPage chunk to resolve before reading the title.
-    await screen.findByRole('heading', { name: /^contact$/i, level: 2 })
+    // The ContactSection title is the page's single <h1>.
+    await screen.findByRole('heading', { name: /^contact$/i, level: 1 })
     expect(document.title).toBe('Contact · HariPrabodham Annakut')
   })
 })

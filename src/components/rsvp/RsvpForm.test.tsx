@@ -24,7 +24,9 @@ async function fillValid(user: ReturnType<typeof userEvent.setup>) {
   // Adults defaults to 1, children to 0, dial code to +49, darshan slot needs a pick:
   await user.click(screen.getByLabelText(/darshan time slot/i))
   await user.click(screen.getByRole('option', { name: /morning/i }))
-  await user.click(screen.getByRole('checkbox', { name: /consent/i }))
+  // The form has exactly one checkbox (the consent control); its accessible
+  // name is now the full visible consent statement, so select it by role only.
+  await user.click(screen.getByRole('checkbox'))
 }
 
 beforeEach(() => {

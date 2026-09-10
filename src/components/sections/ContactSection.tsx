@@ -54,6 +54,7 @@ export default function ContactSection() {
           </Typography>
           <Typography
             variant="h2"
+            component="h1"
             sx={{ mt: 1, color: C.maroon800, fontFamily: '"Blue Mirage", serif' }}
           >
             Contact
