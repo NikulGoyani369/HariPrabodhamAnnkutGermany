@@ -40,9 +40,9 @@ export default function RsvpModal() {
         paper: {
           sx: {
             borderRadius: isMobile ? 0 : '22px',
-            bgcolor: C.cream,
-            border: `1px solid ${C.sand200}`,
-            boxShadow: '0 8px 40px rgba(92,20,32,0.18)',
+            bgcolor: C.paper,
+            border: `1px solid ${C.line}`,
+            boxShadow: '0 8px 40px rgba(61,44,26,0.18)',
             overflow: 'clip',
             position: 'relative',
             '&::before': {
@@ -50,7 +50,7 @@ export default function RsvpModal() {
               position: 'absolute',
               top: 0, left: 0, right: 0,
               height: '4px',
-              background: `linear-gradient(90deg, ${C.gold500}, ${C.saffron300}, ${C.gold500})`,
+              background: `linear-gradient(90deg, ${C.gold}, ${C.peach}, ${C.lavender}, ${C.mint}, ${C.gold})`,
               zIndex: 1,
             },
           },
@@ -70,7 +70,7 @@ export default function RsvpModal() {
           component="span"
           sx={{
             display: 'block', fontSize: '0.68rem', letterSpacing: '0.18em',
-            textTransform: 'uppercase', color: C.maroon700, fontWeight: 600, mb: 1,
+            textTransform: 'uppercase', color: C.gold, fontWeight: 600, mb: 1,
           }}
         >
           {open ? 'Reserve your place' : 'RSVP'}
@@ -79,9 +79,9 @@ export default function RsvpModal() {
           RSVP
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.25, mt: 2, mb: 1 }}>
-          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to right, transparent, ${C.gold500}, transparent)` }} />
-          <Box component="span" sx={{ color: C.gold500, fontSize: 12 }}>✦</Box>
-          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to left, transparent, ${C.gold500}, transparent)` }} />
+          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to right, transparent, ${C.sage}, transparent)` }} />
+          <Box component="span" sx={{ color: C.sage, fontSize: 12 }}>✦</Box>
+          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to left, transparent, ${C.sage}, transparent)` }} />
         </Box>
       </DialogTitle>
       <DialogContent sx={{ px: { xs: 2, md: 4 }, pb: 4, pt: 2 }}>

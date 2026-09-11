@@ -3,7 +3,7 @@ import theme, { C } from './theme/theme'
 
 describe('toolchain', () => {
   it('theme exports tokens and a palette', () => {
-    expect(C.maroon700).toBe('#7A1E2B')
-    expect(theme.palette.primary.main).toBe('#7A1E2B')
+    expect(C.gold).toBe('#9C6B2E')
+    expect(theme.palette.primary.main).toBe('#9C6B2E')
   })
 })

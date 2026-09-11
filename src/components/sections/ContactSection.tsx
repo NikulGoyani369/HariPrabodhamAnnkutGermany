@@ -3,16 +3,16 @@ import { C } from '../../theme/theme'
 import { FOOTER, PEOPLE } from '../../data/data'
 
 const cardSx = {
-  background: C.cream,
-  border: `1px solid ${C.sand200}B3`,
+  background: C.paper,
+  border: `1px solid ${C.line}B3`,
   borderRadius: '18px',
   p: { xs: 3.5, md: 4 },
   textAlign: 'center',
   transition: 'transform .25s ease, border-color .25s ease, box-shadow .25s ease',
   '&:hover': {
     transform: 'translateY(-3px)',
-    borderColor: `${C.maroon700}80`,
-    boxShadow: '0 1px 2px rgba(92,20,32,0.06), 0 4px 14px rgba(92,20,32,0.06)',
+    borderColor: `${C.gold}80`,
+    boxShadow: '0 1px 2px rgba(61,44,26,0.06), 0 4px 14px rgba(61,44,26,0.06)',
   },
 }
 
@@ -20,12 +20,12 @@ const iconCircleSx = {
   width: 56,
   height: 56,
   borderRadius: '50%',
-  background: C.cream2,
-  border: `1px solid ${C.sand300}88`,
+  background: C.paper2,
+  border: `1px solid ${C.line2}88`,
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: C.maroon700,
+  color: C.gold,
   mb: 1.75,
 }
 
@@ -34,7 +34,7 @@ export default function ContactSection() {
     <Box
       component="section"
       id="contact"
-      sx={{ background: C.cream, py: { xs: 10, md: 13 } }}
+      sx={{ background: C.paper, py: { xs: 10, md: 13 } }}
     >
       <Container maxWidth="lg">
         {/* Heading */}
@@ -46,7 +46,7 @@ export default function ContactSection() {
               fontSize: '1rem',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: C.maroon700,
+              color: C.gold,
               fontWeight: 600,
             }}
           >
@@ -55,7 +55,7 @@ export default function ContactSection() {
           <Typography
             variant="h2"
             component="h1"
-            sx={{ mt: 1, color: C.maroon800, fontFamily: '"Blue Mirage", serif' }}
+            sx={{ mt: 1, color: C.espresso, fontFamily: '"Blue Mirage", serif' }}
           >
             Contact
           </Typography>
@@ -66,7 +66,7 @@ export default function ContactSection() {
               justifyContent: 'center',
               gap: 1.25,
               mt: 1.75,
-              color: C.gold500,
+              color: C.sage,
               fontSize: 14,
             }}
           >
@@ -74,7 +74,7 @@ export default function ContactSection() {
               sx={{
                 height: '1px',
                 width: 40,
-                background: `linear-gradient(to right, transparent, ${C.gold500}, transparent)`,
+                background: `linear-gradient(to right, transparent, ${C.sage}, transparent)`,
               }}
             />
             ✦
@@ -82,7 +82,7 @@ export default function ContactSection() {
               sx={{
                 height: '1px',
                 width: 40,
-                background: `linear-gradient(to left, transparent, ${C.gold500}, transparent)`,
+                background: `linear-gradient(to left, transparent, ${C.sage}, transparent)`,
               }}
             />
           </Box>
@@ -118,7 +118,7 @@ export default function ContactSection() {
                 fontSize: '1.375rem',
                 fontStyle: 'italic',
                 fontFamily: '"Blue Mirage", serif',
-                color: C.maroon700,
+                color: C.gold,
               }}
             >
               Email
@@ -128,7 +128,7 @@ export default function ContactSection() {
                 fontSize: '1rem',
                 mt: 0.75,
                 fontFamily: '"Blue Mirage", serif',
-                color: C.maroon700,
+                color: C.gold,
               }}
             >
               For general queries
@@ -143,7 +143,7 @@ export default function ContactSection() {
                 fontSize: '1.05rem',
                 lineHeight: 1.75,
                 textDecoration: 'none',
-                '&:hover': { color: C.maroon800 },
+                '&:hover': { color: C.espresso },
                 transition: 'color .2s',
               }}
             >
@@ -173,7 +173,7 @@ export default function ContactSection() {
                 fontSize: '1.375rem',
                 fontStyle: 'italic',
                 fontFamily: '"Blue Mirage", serif',
-                color: C.maroon700,
+                color: C.gold,
               }}
             >
               Phone / WhatsApp
@@ -183,7 +183,7 @@ export default function ContactSection() {
                 fontSize: '1rem',
                 mt: 0.75,
                 fontFamily: '"Blue Mirage", serif',
-                color: C.maroon700,
+                color: C.gold,
               }}
             >
               Get in touch
@@ -203,7 +203,7 @@ export default function ContactSection() {
                     sx={{
                       fontSize: '0.95rem',
                       fontWeight: 700,
-                      color: C.maroon800,
+                      color: C.espresso,
                     }}
                   >
                     {person.name}
@@ -219,7 +219,7 @@ export default function ContactSection() {
                       textDecoration: 'none',
                       lineHeight: 1.75,
                       overflowWrap: 'break-word',
-                      '&:hover': { color: C.maroon800 },
+                      '&:hover': { color: C.espresso },
                       transition: 'color .2s',
                     }}
                   >
@@ -235,7 +235,7 @@ export default function ContactSection() {
                       mt: 0.5,
                       fontSize: '0.9rem',
                       fontWeight: 600,
-                      color: C.tulsi700,
+                      color: C.sage,
                       textDecoration: 'none',
                       '&:hover': { textDecoration: 'underline' },
                     }}

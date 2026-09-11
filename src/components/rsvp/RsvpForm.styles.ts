@@ -22,7 +22,7 @@ export const rsvpFormStyles: Record<string, SxProps<Theme>> = {
     justifyContent: 'center',
     gap: 1.25,
     my: 2,
-    color: C.gold500,
+    color: C.sage,
     fontSize: 12,
   },
 }

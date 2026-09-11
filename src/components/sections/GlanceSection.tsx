@@ -8,9 +8,9 @@ export default function GlanceSection() {
       component="section"
       id="glance"
       sx={{
-        borderTop: `1px solid ${C.sand200}`,
-        borderBottom: `1px solid ${C.sand200}`,
-        background: C.cream2,
+        borderTop: `1px solid ${C.line}`,
+        borderBottom: `1px solid ${C.line}`,
+        background: C.paper2,
         py: { xs: 5, md: 5.5 },
       }}
     >
@@ -23,7 +23,7 @@ export default function GlanceSection() {
               mt: 0.75,
               fontFamily: '"Blue Mirage", serif',
               fontSize: { xs: '1.75rem', md: 'clamp(1.9rem, 3.4vw, 2.75rem)' },
-              color: C.maroon800,
+              color: C.espresso,
             }}
           >
             Annakut at a Glance
@@ -35,7 +35,7 @@ export default function GlanceSection() {
               justifyContent: 'center',
               gap: 1.25,
               mt: 1.75,
-              color: C.gold500,
+              color: C.sage,
               fontSize: 14,
             }}
           >
@@ -43,7 +43,7 @@ export default function GlanceSection() {
               sx={{
                 height: '1px',
                 width: 40,
-                background: `linear-gradient(to right, transparent, ${C.gold500}, transparent)`,
+                background: `linear-gradient(to right, transparent, ${C.sage}, transparent)`,
               }}
             />
             ✦
@@ -51,7 +51,7 @@ export default function GlanceSection() {
               sx={{
                 height: '1px',
                 width: 40,
-                background: `linear-gradient(to left, transparent, ${C.gold500}, transparent)`,
+                background: `linear-gradient(to left, transparent, ${C.sage}, transparent)`,
               }}
             />
           </Box>
@@ -65,7 +65,7 @@ export default function GlanceSection() {
                 <Divider
                   orientation="vertical"
                   flexItem
-                  sx={{ borderColor: C.sand200, mx: { md: 1.5, lg: 2.5 } }}
+                  sx={{ borderColor: C.line, mx: { md: 1.5, lg: 2.5 } }}
                 />
               )}
               <Box
@@ -93,7 +93,7 @@ export default function GlanceSection() {
                       fontSize: { md: '0.68rem', lg: '0.78rem' },
                       letterSpacing: { md: '0.06em', lg: '0.1em' },
                       textTransform: 'uppercase',
-                      color: C.maroon800,
+                      color: C.espresso,
                       lineHeight: 1.3,
                     }}
                   >
@@ -150,7 +150,7 @@ export default function GlanceSection() {
                       fontSize: '0.72rem',
                       letterSpacing: '0.08em',
                       textTransform: 'uppercase',
-                      color: C.maroon800,
+                      color: C.espresso,
                       lineHeight: 1.3,
                     }}
                   >

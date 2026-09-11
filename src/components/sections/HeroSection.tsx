@@ -35,7 +35,7 @@ export default function HeroSection() {
         <Typography component="h1" sx={s.title}>
           {EVENT.title}
         </Typography>
-        <Typography variant="h3" component="p" sx={{ mt: 1, color: C.maroon700 }}>
+        <Typography variant="h3" component="p" sx={{ mt: 1, color: C.gold }}>
           {EVENT.tagline}
         </Typography>
 
@@ -62,7 +62,7 @@ export default function HeroSection() {
             </Button>
           </Stack>
         ) : (
-          <Typography sx={{ mt: 3, color: C.maroon700 }}>
+          <Typography sx={{ mt: 3, color: C.gold }}>
             RSVP is not open at the moment.{' '}
             <Link component={RouterLink} to="/venue" sx={{ fontWeight: 600 }}>
               Learn more
@@ -94,14 +94,19 @@ export default function HeroSection() {
         }}
       >
         <path
+          d="M0,70 C300,10 620,120 960,55 C1180,15 1320,80 1440,50 L1440,160 L0,160 Z"
+          fill={C.peach}
+          fillOpacity="0.16"
+        />
+        <path
           d="M0,80 C360,20 720,130 1080,60 C1260,25 1380,90 1440,60 L1440,160 L0,160 Z"
-          fill={C.saffron300}
-          fillOpacity="0.35"
+          fill={C.mint}
+          fillOpacity="0.38"
         />
         <path
           d="M0,110 C240,60 480,140 720,100 C960,55 1200,130 1440,90 L1440,160 L0,160 Z"
-          fill={C.gold300}
-          fillOpacity="0.3"
+          fill={C.lavender}
+          fillOpacity="0.34"
         />
       </Box>
     </Box>

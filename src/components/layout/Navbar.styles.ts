@@ -3,10 +3,10 @@ import { C } from '../../theme/theme'
 
 export const navbarStyles: Record<string, SxProps<Theme>> = {
   appBar: {
-    bgcolor: `${C.cream}E0`,
+    bgcolor: `${C.paper}E0`,
     backdropFilter: 'saturate(140%) blur(12px)',
     WebkitBackdropFilter: 'saturate(140%) blur(12px)',
-    borderBottom: `1px solid ${C.sand200}80`,
+    borderBottom: `1px solid ${C.line}80`,
     boxShadow: '0 1px 0 rgba(255,255,255,0.6) inset',
   },
   toolbar: {
@@ -31,7 +31,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     fontFamily: '"Blue Mirage", serif',
     fontSize: { xs: 20, md: 24 },
     lineHeight: 1.05,
-    color: C.maroon800,
+    color: C.espresso,
     fontWeight: 500,
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -40,7 +40,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
   brandSub: {
     display: 'block',
     fontSize: 18,
-    color: C.maroon800,
+    color: C.espresso,
     fontStyle: 'normal',
     letterSpacing: '0.02em',
     fontFamily: '"Blue Mirage", "Inter", sans-serif',
@@ -54,7 +54,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     fontSize: 16,
     fontWeight: 500,
     fontFamily: '"Blue Mirage", serif',
-    color: C.maroon800,
+    color: C.espresso,
     px: 1.5,
     py: 0.75,
     borderRadius: '6px',
@@ -66,27 +66,27 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
       right: 12,
       bottom: 4,
       height: '1px',
-      background: `${C.sand300}88`,
+      background: `${C.line2}88`,
       transform: 'scaleX(0)',
       transformOrigin: 'left',
       transition: 'transform .25s ease',
     },
     '&:hover::after': { transform: 'scaleX(1)' },
-    '&:hover': { bgcolor: 'transparent', color: C.maroon800 },
+    '&:hover': { bgcolor: 'transparent', color: C.espresso },
   },
   registerButton: {
     ml: 1.5,
     fontWeight: 600,
-    boxShadow: `0 4px 14px rgba(122,30,43,0.28)`,
+    boxShadow: `0 4px 14px rgba(156,107,46,0.28)`,
     '&:hover': {
       transform: 'translateY(-1px)',
-      boxShadow: `0 8px 22px rgba(122,30,43,0.36)`,
+      boxShadow: `0 8px 22px rgba(156,107,46,0.36)`,
     },
   },
   drawerBox: {
     width: 'min(360px, 86vw)',
     pt: 1,
-    background: C.cream,
+    background: C.paper,
     height: '100%',
   },
   drawerLink: {
@@ -94,10 +94,10 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     borderRadius: '10px',
     fontSize: 16,
     fontWeight: 500,
-    color: C.maroon800,
-    '&:hover': { background: C.cream2 },
+    color: C.espresso,
+    '&:hover': { background: C.paper2 },
   },
   iconColor: {
-    color: C.maroon800,
+    color: C.espresso,
   },
 }

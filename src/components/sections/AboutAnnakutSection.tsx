@@ -15,12 +15,12 @@ export default function AboutAnnakutSection() {
     <Box
       component="section"
       id="about"
-      sx={{ background: C.cream, py: { xs: 6, md: 8 } }}
+      sx={{ background: C.paper, py: { xs: 6, md: 8 } }}
     >
       <Container maxWidth="md" sx={{ textAlign: 'center' }}>
         <Typography
           variant="h2"
-          sx={{ fontFamily: '"Blue Mirage", serif', color: C.maroon800 }}
+          sx={{ fontFamily: '"Blue Mirage", serif', color: C.espresso }}
         >
           {ABOUT_ANNAKUT.heading}
         </Typography>
@@ -33,7 +33,7 @@ export default function AboutAnnakutSection() {
             gap: 1.25,
             mt: 1.75,
             mb: 4,
-            color: C.gold500,
+            color: C.sage,
             fontSize: 14,
           }}
         >
@@ -41,7 +41,7 @@ export default function AboutAnnakutSection() {
             sx={{
               height: '1px',
               width: 40,
-              background: `linear-gradient(to right, transparent, ${C.gold500}, transparent)`,
+              background: `linear-gradient(to right, transparent, ${C.sage}, transparent)`,
             }}
           />
           ✦
@@ -49,7 +49,7 @@ export default function AboutAnnakutSection() {
             sx={{
               height: '1px',
               width: 40,
-              background: `linear-gradient(to left, transparent, ${C.gold500}, transparent)`,
+              background: `linear-gradient(to left, transparent, ${C.sage}, transparent)`,
             }}
           />
         </Box>
@@ -78,16 +78,16 @@ export default function AboutAnnakutSection() {
               elevation={0}
               sx={{
                 background: 'transparent',
-                border: `1px solid ${C.sand200}`,
+                border: `1px solid ${C.line}`,
                 borderRadius: 2,
                 mb: 1.5,
                 '&::before': { display: 'none' },
               }}
             >
               <AccordionSummary
-                expandIcon={<ExpandMoreIcon sx={{ color: C.maroon700 }} />}
+                expandIcon={<ExpandMoreIcon sx={{ color: C.gold }} />}
               >
-                <Typography sx={{ fontWeight: 600, color: C.maroon800 }}>
+                <Typography sx={{ fontWeight: 600, color: C.espresso }}>
                   {faq.q}
                 </Typography>
               </AccordionSummary>

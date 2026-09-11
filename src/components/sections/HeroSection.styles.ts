@@ -19,7 +19,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     transform: 'translateX(-50%)',
     width: { xs: 300, md: 560 },
     height: { xs: 220, md: 340 },
-    background: `radial-gradient(circle at 50% 50%, ${C.saffron300}44, transparent 70%)`,
+    background: `radial-gradient(circle at 50% 50%, ${C.mint}44, transparent 70%)`,
     filter: 'blur(40px)',
     pointerEvents: 'none',
     zIndex: 0,
@@ -30,7 +30,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     letterSpacing: '0.22em',
     textTransform: 'uppercase' as const,
     fontWeight: 600,
-    color: C.tulsi700,
+    color: C.sage,
   },
 
   kicker: {
@@ -38,14 +38,14 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     fontFamily: '"Cormorant Garamond", "Cormorant", Georgia, serif',
     fontStyle: 'italic',
     fontSize: { xs: '1.4rem', md: '1.9rem' },
-    color: C.maroon700,
+    color: C.gold,
     lineHeight: 1.1,
   },
 
   title: {
     fontFamily: '"Blue Mirage", serif',
     fontSize: { xs: '3rem', md: '5rem' },
-    color: C.maroon800,
+    color: C.espresso,
     lineHeight: 1,
   },
 
@@ -57,14 +57,14 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     flexWrap: 'wrap',
     gap: '18px',
     mt: 2.5,
-    color: C.maroon700,
+    color: C.gold,
     fontFamily: '"Blue Mirage", serif',
     fontSize: { xs: '1rem', md: '1.25rem' },
     '&::before, &::after': {
       content: '""',
       height: '1px',
       width: '28px',
-      background: C.gold500,
+      background: C.sage,
       display: 'block',
     },
   },
@@ -87,8 +87,8 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
   },
 
   cdCell: {
-    background: `color-mix(in srgb, ${C.cream} 70%, transparent)`,
-    border: `1px solid ${C.sand200}CC`,
+    background: `color-mix(in srgb, ${C.paper} 70%, transparent)`,
+    border: `1px solid ${C.line}CC`,
     borderRadius: '14px',
     px: { xs: 0.5, md: 1 },
     py: { xs: 0.75, md: 1.75 },
@@ -100,7 +100,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
   cdNum: {
     fontFamily: '"Cormorant Garamond", serif',
     fontSize: { xs: '1.2rem', md: '2rem' },
-    color: C.maroon800,
+    color: C.espresso,
     lineHeight: 1,
     fontVariantNumeric: 'tabular-nums',
     letterSpacing: '-0.02em',
@@ -111,7 +111,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     fontSize: { xs: '0.52rem', md: '0.65rem' },
     letterSpacing: '0.12em',
     textTransform: 'uppercase' as const,
-    color: C.maroon700,
+    color: C.gold,
     mt: { xs: 0.4, md: 0.75 },
     fontWeight: 600,
   },

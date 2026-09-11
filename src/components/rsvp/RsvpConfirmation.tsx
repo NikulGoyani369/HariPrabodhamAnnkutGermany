@@ -14,7 +14,7 @@ export default function RsvpConfirmation({ name, partySize, slot, onClose }: Pro
       <Typography
         variant="h3"
         component="p"
-        sx={{ fontFamily: '"Blue Mirage", serif', color: C.maroon800, mb: 1.5 }}
+        sx={{ fontFamily: '"Blue Mirage", serif', color: C.espresso, mb: 1.5 }}
       >
         Jai Swaminarayan 🙏
       </Typography>
@@ -26,7 +26,7 @@ export default function RsvpConfirmation({ name, partySize, slot, onClose }: Pro
           maxWidth: 320,
           mx: 'auto',
           textAlign: 'left',
-          border: `1px solid ${C.sand200}`,
+          border: `1px solid ${C.line}`,
           borderRadius: '14px',
           p: 2,
           mb: 3,
