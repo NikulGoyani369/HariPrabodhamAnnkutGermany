@@ -13,11 +13,11 @@ export default function RegistrationClosed({ onClose }: Props) {
       <Typography
         variant="h3"
         component="p"
-        sx={{ fontFamily: '"Blue Mirage", serif', color: C.espresso, mb: 1.5 }}
+        sx={{ fontFamily: '"Blue Mirage", serif', color: C.ink, mb: 1.5 }}
       >
         RSVP is now closed
       </Typography>
-      <Typography sx={{ color: C.muted, fontSize: '0.95rem', mb: 2.5, maxWidth: 420, mx: 'auto' }}>
+      <Typography sx={{ color: C.inkSoft, fontSize: '0.95rem', mb: 2.5, maxWidth: 420, mx: 'auto' }}>
         Jai Swaminarayan. RSVP for the HariPrabodham Annakut has now closed. For any
         queries, please reach out through our{' '}
         <Link
@@ -32,9 +32,9 @@ export default function RegistrationClosed({ onClose }: Props) {
       </Typography>
       <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, maxWidth: 420, mx: 'auto' }}>
         {PEOPLE.map((p) => (
-          <Box key={p.name} sx={{ border: `1px solid ${C.line}`, borderRadius: '14px', p: 2 }}>
-            <Typography sx={{ fontSize: '0.95rem', fontWeight: 700, color: C.espresso }}>{p.name}</Typography>
-            <Box component="a" href={p.phone} sx={{ display: 'block', mt: 0.5, fontSize: '0.9rem', color: C.muted, textDecoration: 'none' }}>
+          <Box key={p.name} sx={{ border: `1px solid ${C.shell}`, borderRadius: '14px', p: 2 }}>
+            <Typography sx={{ fontSize: '0.95rem', fontWeight: 700, color: C.ink }}>{p.name}</Typography>
+            <Box component="a" href={p.phone} sx={{ display: 'block', mt: 0.5, fontSize: '0.9rem', color: C.inkSoft, textDecoration: 'none' }}>
               {p.phone.replace('tel:', '')}
             </Box>
           </Box>

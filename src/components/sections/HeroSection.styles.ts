@@ -11,7 +11,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     pb: { xs: '90px', md: '170px' },
   },
 
-  // CSS-only radial ember glow behind the title
+  // Soft warm glow behind the title — echoes the uplit stage look.
   emberGlow: {
     position: 'absolute',
     top: { xs: '16%', md: '20%' },
@@ -19,7 +19,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     transform: 'translateX(-50%)',
     width: { xs: 300, md: 560 },
     height: { xs: 220, md: 340 },
-    background: `radial-gradient(circle at 50% 50%, ${C.mint}44, transparent 70%)`,
+    background: `radial-gradient(circle at 50% 50%, ${C.peach}26, transparent 70%)`,
     filter: 'blur(40px)',
     pointerEvents: 'none',
     zIndex: 0,
@@ -30,7 +30,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     letterSpacing: '0.22em',
     textTransform: 'uppercase' as const,
     fontWeight: 600,
-    color: C.sage,
+    color: C.mintDeep,
   },
 
   kicker: {
@@ -42,10 +42,12 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     lineHeight: 1.1,
   },
 
+  // Fallback color for browsers that don't support background-clip: text —
+  // the gradient fill itself is applied at the call site (HeroSection.tsx).
   title: {
     fontFamily: '"Blue Mirage", serif',
     fontSize: { xs: '3rem', md: '5rem' },
-    color: C.espresso,
+    color: C.ink,
     lineHeight: 1,
   },
 
@@ -57,14 +59,14 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     flexWrap: 'wrap',
     gap: '18px',
     mt: 2.5,
-    color: C.gold,
+    color: C.inkSoft,
     fontFamily: '"Blue Mirage", serif',
     fontSize: { xs: '1rem', md: '1.25rem' },
     '&::before, &::after': {
       content: '""',
       height: '1px',
       width: '28px',
-      background: C.sage,
+      background: C.gold,
       display: 'block',
     },
   },
@@ -86,10 +88,10 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     maxWidth: 420,
   },
 
+  // Shared shape/spacing; background and border are set per-cell (see
+  // HeroSection.tsx) so each of the four cells gets its own pastel tint.
   cdCell: {
-    background: `color-mix(in srgb, ${C.paper} 70%, transparent)`,
-    border: `1px solid ${C.line}CC`,
-    borderRadius: '14px',
+    borderRadius: '12px',
     px: { xs: 0.5, md: 1 },
     py: { xs: 0.75, md: 1.75 },
     textAlign: 'center',
@@ -100,7 +102,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
   cdNum: {
     fontFamily: '"Cormorant Garamond", serif',
     fontSize: { xs: '1.2rem', md: '2rem' },
-    color: C.espresso,
+    color: C.ink,
     lineHeight: 1,
     fontVariantNumeric: 'tabular-nums',
     letterSpacing: '-0.02em',
@@ -111,7 +113,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     fontSize: { xs: '0.52rem', md: '0.65rem' },
     letterSpacing: '0.12em',
     textTransform: 'uppercase' as const,
-    color: C.gold,
+    color: C.inkMuted,
     mt: { xs: 0.4, md: 0.75 },
     fontWeight: 600,
   },

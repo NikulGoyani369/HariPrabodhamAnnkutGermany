@@ -86,7 +86,7 @@ export default function Navbar() {
             HariPrabodham
             <Typography
               component="small"
-              sx={{ ...s.brandSub, color: C.gold }}
+              sx={{ ...s.brandSub, color: C.saffronDeep }}
             >
               Annakut
             </Typography>
@@ -117,7 +117,10 @@ export default function Navbar() {
                         sx={
                           [
                             s.drawerLink,
-                            isActive(link.href) && { background: C.gold },
+                            isActive(link.href) && {
+                              background: C.saffron,
+                              color: '#ffffff',
+                            },
                           ] as SxProps<Theme>
                         }
                       >
@@ -157,7 +160,7 @@ export default function Navbar() {
                   [
                     s.navButton,
                     isActive(link.href) && {
-                      color: C.gold,
+                      color: C.saffron,
                       '&::after': { transform: 'scaleX(1)' },
                     },
                   ] as SxProps<Theme>

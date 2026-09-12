@@ -18,7 +18,7 @@ const DataPrivacyPage = lazy(() => import('./pages/DataPrivacyPage'))
 function PageLoader() {
   return (
     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
-      <CircularProgress size={32} sx={{ color: C.gold }} />
+      <CircularProgress size={32} sx={{ color: C.saffron }} />
     </Box>
   )
 }
@@ -51,8 +51,8 @@ function NotFoundPage() {
   return (
     <PageShell>
       <Box sx={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', px: 2 }}>
-        <Typography sx={{ fontFamily: '"Blue Mirage", serif', fontSize: { xs: '5rem', md: '8rem' }, color: C.line2, lineHeight: 1, mb: 1 }}>404</Typography>
-        <Typography variant="h4" component="h1" sx={{ color: C.espresso, mb: 1.5 }}>Page not found</Typography>
+        <Typography sx={{ fontFamily: '"Blue Mirage", serif', fontSize: { xs: '5rem', md: '8rem' }, color: C.shell, lineHeight: 1, mb: 1 }}>404</Typography>
+        <Typography variant="h4" component="h1" sx={{ color: C.ink, mb: 1.5 }}>Page not found</Typography>
         <Button variant="contained" size="large" onClick={() => navigate('/')}>Back to Home</Button>
       </Box>
     </PageShell>

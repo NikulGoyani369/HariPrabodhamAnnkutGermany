@@ -3,16 +3,16 @@ import { C } from '../../theme/theme'
 import { FOOTER, PEOPLE } from '../../data/data'
 
 const cardSx = {
-  background: C.paper,
-  border: `1px solid ${C.line}B3`,
+  background: C.ivory,
+  border: `1px solid ${C.shell}B3`,
   borderRadius: '18px',
   p: { xs: 3.5, md: 4 },
   textAlign: 'center',
   transition: 'transform .25s ease, border-color .25s ease, box-shadow .25s ease',
   '&:hover': {
     transform: 'translateY(-3px)',
-    borderColor: `${C.gold}80`,
-    boxShadow: '0 1px 2px rgba(61,44,26,0.06), 0 4px 14px rgba(61,44,26,0.06)',
+    borderColor: `${C.saffron}80`,
+    boxShadow: '0 1px 2px rgba(74,55,40,0.06), 0 4px 14px rgba(74,55,40,0.06)',
   },
 }
 
@@ -20,8 +20,8 @@ const iconCircleSx = {
   width: 56,
   height: 56,
   borderRadius: '50%',
-  background: C.paper2,
-  border: `1px solid ${C.line2}88`,
+  background: C.cream,
+  border: `1px solid ${C.gold}88`,
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -34,7 +34,7 @@ export default function ContactSection() {
     <Box
       component="section"
       id="contact"
-      sx={{ background: C.paper, py: { xs: 10, md: 13 } }}
+      sx={{ background: C.ivory, py: { xs: 10, md: 13 } }}
     >
       <Container maxWidth="lg">
         {/* Heading */}
@@ -55,7 +55,7 @@ export default function ContactSection() {
           <Typography
             variant="h2"
             component="h1"
-            sx={{ mt: 1, color: C.espresso, fontFamily: '"Blue Mirage", serif' }}
+            sx={{ mt: 1, color: C.ink, fontFamily: '"Blue Mirage", serif' }}
           >
             Contact
           </Typography>
@@ -66,7 +66,7 @@ export default function ContactSection() {
               justifyContent: 'center',
               gap: 1.25,
               mt: 1.75,
-              color: C.sage,
+              color: C.goldLight,
               fontSize: 14,
             }}
           >
@@ -74,7 +74,7 @@ export default function ContactSection() {
               sx={{
                 height: '1px',
                 width: 40,
-                background: `linear-gradient(to right, transparent, ${C.sage}, transparent)`,
+                background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)`,
               }}
             />
             ✦
@@ -82,7 +82,7 @@ export default function ContactSection() {
               sx={{
                 height: '1px',
                 width: 40,
-                background: `linear-gradient(to left, transparent, ${C.sage}, transparent)`,
+                background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)`,
               }}
             />
           </Box>
@@ -139,11 +139,11 @@ export default function ContactSection() {
               sx={{
                 display: 'block',
                 mt: 1.5,
-                color: C.muted,
+                color: C.inkSoft,
                 fontSize: '1.05rem',
                 lineHeight: 1.75,
                 textDecoration: 'none',
-                '&:hover': { color: C.espresso },
+                '&:hover': { color: C.ink },
                 transition: 'color .2s',
               }}
             >
@@ -203,7 +203,7 @@ export default function ContactSection() {
                     sx={{
                       fontSize: '0.95rem',
                       fontWeight: 700,
-                      color: C.espresso,
+                      color: C.ink,
                     }}
                   >
                     {person.name}
@@ -215,11 +215,11 @@ export default function ContactSection() {
                       display: 'block',
                       mt: 0.25,
                       fontSize: '1.05rem',
-                      color: C.muted,
+                      color: C.inkSoft,
                       textDecoration: 'none',
                       lineHeight: 1.75,
                       overflowWrap: 'break-word',
-                      '&:hover': { color: C.espresso },
+                      '&:hover': { color: C.ink },
                       transition: 'color .2s',
                     }}
                   >
@@ -235,7 +235,7 @@ export default function ContactSection() {
                       mt: 0.5,
                       fontSize: '0.9rem',
                       fontWeight: 600,
-                      color: C.sage,
+                      color: C.mintDeep,
                       textDecoration: 'none',
                       '&:hover': { textDecoration: 'underline' },
                     }}

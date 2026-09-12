@@ -15,12 +15,12 @@ export default function AboutAnnakutSection() {
     <Box
       component="section"
       id="about"
-      sx={{ background: C.paper, py: { xs: 6, md: 8 } }}
+      sx={{ background: C.ivory, py: { xs: 6, md: 8 } }}
     >
       <Container maxWidth="md" sx={{ textAlign: 'center' }}>
         <Typography
           variant="h2"
-          sx={{ fontFamily: '"Blue Mirage", serif', color: C.espresso }}
+          sx={{ fontFamily: '"Blue Mirage", serif', color: C.ink }}
         >
           {ABOUT_ANNAKUT.heading}
         </Typography>
@@ -33,7 +33,7 @@ export default function AboutAnnakutSection() {
             gap: 1.25,
             mt: 1.75,
             mb: 4,
-            color: C.sage,
+            color: C.goldLight,
             fontSize: 14,
           }}
         >
@@ -41,7 +41,7 @@ export default function AboutAnnakutSection() {
             sx={{
               height: '1px',
               width: 40,
-              background: `linear-gradient(to right, transparent, ${C.sage}, transparent)`,
+              background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)`,
             }}
           />
           ✦
@@ -49,7 +49,7 @@ export default function AboutAnnakutSection() {
             sx={{
               height: '1px',
               width: 40,
-              background: `linear-gradient(to left, transparent, ${C.sage}, transparent)`,
+              background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)`,
             }}
           />
         </Box>
@@ -78,7 +78,7 @@ export default function AboutAnnakutSection() {
               elevation={0}
               sx={{
                 background: 'transparent',
-                border: `1px solid ${C.line}`,
+                border: `1px solid ${C.shell}`,
                 borderRadius: 2,
                 mb: 1.5,
                 '&::before': { display: 'none' },
@@ -87,7 +87,7 @@ export default function AboutAnnakutSection() {
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon sx={{ color: C.gold }} />}
               >
-                <Typography sx={{ fontWeight: 600, color: C.espresso }}>
+                <Typography sx={{ fontWeight: 600, color: C.ink }}>
                   {faq.q}
                 </Typography>
               </AccordionSummary>

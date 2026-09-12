@@ -40,9 +40,9 @@ export default function RsvpModal() {
         paper: {
           sx: {
             borderRadius: isMobile ? 0 : '22px',
-            bgcolor: C.paper,
-            border: `1px solid ${C.line}`,
-            boxShadow: '0 8px 40px rgba(61,44,26,0.18)',
+            bgcolor: C.ivory,
+            border: `1px solid ${C.shell}`,
+            boxShadow: '0 8px 40px rgba(74,55,40,0.18)',
             overflow: 'clip',
             position: 'relative',
             '&::before': {
@@ -50,7 +50,7 @@ export default function RsvpModal() {
               position: 'absolute',
               top: 0, left: 0, right: 0,
               height: '4px',
-              background: `linear-gradient(90deg, ${C.gold}, ${C.peach}, ${C.lavender}, ${C.mint}, ${C.gold})`,
+              background: `linear-gradient(90deg, ${C.gold}, ${C.blush}, ${C.peach}, ${C.mint}, ${C.lilac}, ${C.gold})`,
               zIndex: 1,
             },
           },
@@ -62,7 +62,7 @@ export default function RsvpModal() {
           onClick={closeModal}
           size="small"
           aria-label="Close"
-          sx={{ position: 'absolute', top: 12, right: 12, color: C.muted }}
+          sx={{ position: 'absolute', top: 12, right: 12, color: C.inkSoft }}
         >
           <CloseIcon fontSize="small" />
         </IconButton>
@@ -79,9 +79,9 @@ export default function RsvpModal() {
           RSVP
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.25, mt: 2, mb: 1 }}>
-          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to right, transparent, ${C.sage}, transparent)` }} />
-          <Box component="span" sx={{ color: C.sage, fontSize: 12 }}>✦</Box>
-          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to left, transparent, ${C.sage}, transparent)` }} />
+          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)` }} />
+          <Box component="span" sx={{ color: C.goldLight, fontSize: 12 }}>✦</Box>
+          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)` }} />
         </Box>
       </DialogTitle>
       <DialogContent sx={{ px: { xs: 2, md: 4 }, pb: 4, pt: 2 }}>
