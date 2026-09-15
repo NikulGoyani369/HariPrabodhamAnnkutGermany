@@ -13,7 +13,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
           fontFamily: '"Cormorant Garamond", serif',
           fontSize: { xs: '1.2rem', md: '1.35rem' },
           fontWeight: 700,
-          color: C.espresso,
+          color: C.ink,
           mb: 1.25,
         }}
       >
@@ -26,7 +26,7 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 function Para({ children }: { children: ReactNode }) {
   return (
-    <Typography sx={{ fontSize: 15, lineHeight: 1.8, color: C.muted, mb: 0.75 }}>
+    <Typography sx={{ fontSize: 15, lineHeight: 1.8, color: C.inkSoft, mb: 0.75 }}>
       {children}
     </Typography>
   )
@@ -36,29 +36,29 @@ export default function DataPrivacyPage() {
   usePageMeta('Data Privacy', 'Privacy policy for the HariPrabodham Annakut.')
   return (
     <PageShell>
-      <Box sx={{ background: C.paper, minHeight: '100vh' }}>
+      <Box sx={{ background: C.ivory, minHeight: '100vh' }}>
         {/* Page hero */}
         <Box
           sx={{
             py: { xs: '64px', md: '80px' },
             textAlign: 'center',
-            background: `radial-gradient(600px 300px at 50% 0%, ${C.line}B3, transparent 70%), ${C.paper}`,
+            background: `radial-gradient(600px 300px at 50% 0%, ${C.shell}B3, transparent 70%), ${C.ivory}`,
           }}
         >
           <Container maxWidth="md">
-            <Typography component="span" sx={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.sage, fontWeight: 600 }}>
+            <Typography component="span" sx={{ fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: C.gold, fontWeight: 600 }}>
               Legal Notice
             </Typography>
             <Typography
               variant="h1"
-              sx={{ mt: 0.75, fontSize: { xs: '2.25rem', md: 'clamp(2rem, 4vw, 3rem)' }, color: C.espresso, fontFamily: '"Blue Mirage", serif' }}
+              sx={{ mt: 0.75, fontSize: { xs: '2.25rem', md: 'clamp(2rem, 4vw, 3rem)' }, color: C.ink, fontFamily: '"Blue Mirage", serif' }}
             >
               Data Privacy
             </Typography>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.25, mt: 1.75, color: C.sage, fontSize: 14 }}>
-              <Box sx={{ height: '1px', width: 40, background: `linear-gradient(to right, transparent, ${C.sage}, transparent)` }} />
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.25, mt: 1.75, color: C.goldLight, fontSize: 14 }}>
+              <Box sx={{ height: '1px', width: 40, background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)` }} />
               ✦
-              <Box sx={{ height: '1px', width: 40, background: `linear-gradient(to left, transparent, ${C.sage}, transparent)` }} />
+              <Box sx={{ height: '1px', width: 40, background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)` }} />
             </Box>
           </Container>
         </Box>
@@ -67,8 +67,8 @@ export default function DataPrivacyPage() {
         <Container maxWidth="md" sx={{ py: { xs: 6, md: 8 } }}>
           <Box
             sx={{
-              background: 'white',
-              border: `1px solid ${C.line}B3`,
+              background: C.shell,
+              border: `1px solid ${C.gold}55`,
               borderRadius: '18px',
               p: { xs: 3.5, md: 5 },
             }}
@@ -85,7 +85,7 @@ export default function DataPrivacyPage() {
                 <Box
                   component="a"
                   href={`mailto:${FOOTER.email}`}
-                  sx={{ color: C.sage, '&:hover': { color: C.sage }, transition: 'color .2s' }}
+                  sx={{ color: C.mintDeep, '&:hover': { color: C.mintDeep }, transition: 'color .2s' }}
                 >
                   {FOOTER.email}
                 </Box>

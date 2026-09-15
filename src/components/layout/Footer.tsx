@@ -10,8 +10,8 @@ export default function Footer() {
     <Box
       component="footer"
       sx={{
-        background: `linear-gradient(180deg, ${C.gold}, ${C.espresso})`,
-        color: `${C.paper}E6`,
+        background: `linear-gradient(180deg, ${C.saffronDeep}, ${C.ink})`,
+        color: `${C.ivory}E6`,
         pt: { xs: 5, md: 6 },
         pb: { xs: 3, md: 3.5 },
       }}
@@ -23,7 +23,7 @@ export default function Footer() {
             sx={{
               fontFamily: '"Blue Mirage", serif',
               fontSize: { xs: '1.25rem', md: 'clamp(1.25rem, 2.4vw, 1.75rem)' },
-              color: C.paper,
+              color: C.ivory,
               lineHeight: 1.4,
             }}
           >
@@ -37,7 +37,7 @@ export default function Footer() {
               fontSize: { xs: '0.7rem', md: '0.75rem' },
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: C.paper,
+              color: C.ivory,
               fontWeight: 600,
             }}
           >
@@ -50,14 +50,14 @@ export default function Footer() {
           sx={{
             mt: { xs: 4, md: 5 },
             pt: { xs: 2.5, md: 3 },
-            borderTop: `1px solid ${C.paper}2E`,
+            borderTop: `1px solid ${C.ivory}2E`,
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: { xs: 'center', sm: 'space-between' },
             alignItems: 'center',
             gap: { xs: 1.5, sm: 2 },
             fontSize: 13,
-            color: `${C.paper}99`,
+            color: `${C.ivory}99`,
             textAlign: { xs: 'center', sm: 'left' },
           }}
         >
@@ -82,7 +82,7 @@ export default function Footer() {
                 (e.key === 'Enter' || e.key === ' ') && navigate('/impressum')
               }
               sx={{
-                color: `${C.paper}99`,
+                color: `${C.ivory}99`,
                 cursor: 'pointer',
                 fontSize: 13,
                 '&:hover': { color: C.mint },
@@ -101,7 +101,7 @@ export default function Footer() {
                 navigate('/data-privacy')
               }
               sx={{
-                color: `${C.paper}99`,
+                color: `${C.ivory}99`,
                 cursor: 'pointer',
                 fontSize: 13,
                 '&:hover': { color: C.mint },
@@ -114,7 +114,7 @@ export default function Footer() {
               component="a"
               href={`mailto:${FOOTER.email}`}
               sx={{
-                color: `${C.paper}99`,
+                color: `${C.ivory}99`,
                 '&:hover': { color: C.mint },
                 transition: 'color .2s',
                 fontSize: 13,

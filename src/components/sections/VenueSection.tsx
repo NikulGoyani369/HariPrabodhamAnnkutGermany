@@ -11,7 +11,7 @@ function Ornament() {
         justifyContent: 'center',
         gap: 1.25,
         mt: 1.75,
-        color: C.sage,
+        color: C.goldLight,
         fontSize: 14,
       }}
     >
@@ -19,7 +19,7 @@ function Ornament() {
         sx={{
           height: '1px',
           width: 40,
-          background: `linear-gradient(to right, transparent, ${C.sage}, transparent)`,
+          background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)`,
         }}
       />
       ✦
@@ -27,7 +27,7 @@ function Ornament() {
         sx={{
           height: '1px',
           width: 40,
-          background: `linear-gradient(to left, transparent, ${C.sage}, transparent)`,
+          background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)`,
         }}
       />
     </Box>
@@ -44,7 +44,7 @@ export default function VenueSection() {
       component="section"
       id="venue"
       sx={{
-        background: `linear-gradient(180deg, ${C.paper} 0%, ${C.paper2} 100%)`,
+        background: `linear-gradient(180deg, ${C.ivory} 0%, ${C.cream} 100%)`,
         py: { xs: 10, md: 13 },
       }}
     >
@@ -67,7 +67,7 @@ export default function VenueSection() {
           <Typography
             variant="h2"
             component="h1"
-            sx={{ mt: 1, color: C.espresso, fontFamily: '"Blue Mirage", serif' }}
+            sx={{ mt: 1, color: C.ink, fontFamily: '"Blue Mirage", serif' }}
           >
             The Venue
           </Typography>
@@ -79,12 +79,12 @@ export default function VenueSection() {
           sx={{
             display: 'grid',
             gridTemplateColumns: { xs: '1fr', md: '1.05fr 0.95fr' },
-            background: C.paper,
-            border: `1px solid ${C.line}B3`,
+            background: C.ivory,
+            border: `1px solid ${C.shell}B3`,
             borderRadius: '22px',
             overflow: 'hidden',
             boxShadow:
-              '0 4px 14px rgba(61,44,26,0.08), 0 12px 40px rgba(61,44,26,0.06)',
+              '0 4px 14px rgba(74,55,40,0.08), 0 12px 40px rgba(74,55,40,0.06)',
             mb: { xs: 6, md: 8 },
           }}
         >
@@ -96,7 +96,7 @@ export default function VenueSection() {
               sx={{
                 fontFamily: '"Blue Mirage", serif',
                 fontSize: { xs: '1.75rem', md: 'clamp(1.9rem, 3.4vw, 2.75rem)' },
-                color: C.espresso,
+                color: C.ink,
               }}
             >
               {EVENT.venueName}
@@ -112,7 +112,7 @@ export default function VenueSection() {
                     fontFamily: '"Cormorant Garamond", serif',
                     fontSize: { xs: '1.1rem', md: '1.2rem' },
                     fontStyle: 'italic',
-                    color: C.espresso,
+                    color: C.ink,
                     lineHeight: 1.6,
                   }}
                 >
@@ -137,7 +137,7 @@ export default function VenueSection() {
           {/* Map side */}
           <Box
             sx={{
-              background: C.paper2,
+              background: C.cream,
               minHeight: { xs: 260, md: 360 },
               position: 'relative',
               order: { xs: -1, md: 0 },
@@ -174,7 +174,7 @@ export default function VenueSection() {
               variant="h3"
               sx={{
                 fontFamily: '"Blue Mirage", serif',
-                color: C.espresso,
+                color: C.ink,
                 fontSize: { xs: '1.375rem', md: '1.6rem' },
               }}
             >
@@ -204,7 +204,7 @@ export default function VenueSection() {
                     color: C.ink,
                   }}
                 >
-                  <Box component="span" sx={{ color: C.sage }}>
+                  <Box component="span" sx={{ color: C.mintDeep }}>
                     •
                   </Box>
                   <span>{step}</span>
@@ -218,7 +218,7 @@ export default function VenueSection() {
               variant="h3"
               sx={{
                 fontFamily: '"Blue Mirage", serif',
-                color: C.espresso,
+                color: C.ink,
                 fontSize: { xs: '1.375rem', md: '1.6rem' },
               }}
             >
@@ -248,7 +248,7 @@ export default function VenueSection() {
                     color: C.ink,
                   }}
                 >
-                  <Box component="span" sx={{ color: C.sage }}>
+                  <Box component="span" sx={{ color: C.mintDeep }}>
                     •
                   </Box>
                   <span>{slot}</span>

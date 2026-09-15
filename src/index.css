@@ -13,19 +13,55 @@
   font-display: swap;
 }
 
+/* ── "Pastel mandir-decor" palette tokens ──
+   Single source of truth: src/theme/theme.ts (the `C` object). Mirrored
+   here as CSS custom properties so raw CSS in this file — and any future
+   non-MUI styling — can reference the same values in one place. */
+:root {
+  /* Neutrals / surfaces */
+  --ivory: #FBF4E9;
+  --cream: #F6EADA;
+  --shell: #EFE0CD;
+
+  /* Pastels */
+  --blush: #F2C6CE;
+  --blush-deep: #E0A3B0;
+  --lilac: #C9A7D0;
+  --lilac-deep: #B493BB;
+  --mint: #BFD3C4;
+  --mint-deep: #9EA79C;
+  --peach: #F3C39B;
+  --peach-deep: #E2AD8E;
+
+  /* Accents */
+  --saffron: #E98A3C;
+  --saffron-deep: #D97A2B;
+  --gold: #C9A25A;
+  --gold-light: #E3C489;
+
+  /* Text */
+  --ink: #4A3728;
+  --ink-soft: #7A6450;
+  --ink-muted: #9C8974;
+}
+
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
 body {
   overflow-x: hidden;
+  /* Page-wide backdrop: a very soft vertical gradient, ivory through a
+     faint blush tint to a faint mint tint — shows through any section
+     that doesn't paint its own background. */
+  background: linear-gradient(180deg, var(--ivory) 0%, #F7E6EA 50%, #EFE9E0 100%);
 }
 
 .MuiAppBar-root.scrolled {
-  background-color: rgba(251, 246, 236, 0.9) !important;
+  background-color: rgba(251, 244, 233, 0.9) !important;
   backdrop-filter: saturate(140%) blur(12px) !important;
   -webkit-backdrop-filter: saturate(140%) blur(12px) !important;
-  border-bottom-color: rgba(223, 206, 166, 0.6) !important;
+  border-bottom-color: var(--gold-light) !important;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset !important;
 }
 

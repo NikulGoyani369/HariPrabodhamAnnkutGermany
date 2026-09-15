@@ -229,7 +229,7 @@ export default function RsvpForm({ onClose }: Props) {
             />
           }
           label={
-            <Typography sx={{ fontSize: 13.5, color: C.muted }}>
+            <Typography sx={{ fontSize: 13.5, color: C.inkSoft }}>
               I consent to my details being used to organise this event, per the{' '}
               <Link component={RouterLink} to="/data-privacy">
                 privacy notice
