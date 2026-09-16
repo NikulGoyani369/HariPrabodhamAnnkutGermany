@@ -60,12 +60,19 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  let payload: { record?: Partial<RsvpRecord> };
+  let payload: { type?: string; table?: string; record?: Partial<RsvpRecord> };
   try {
     payload = await req.json();
   } catch {
     return new Response(JSON.stringify({ ok: false, error: "Invalid JSON" }), {
       status: 400,
+      headers: { "content-type": "application/json" },
+    });
+  }
+
+  if (payload.type && payload.type !== "INSERT") {
+    return new Response(JSON.stringify({ ok: true, skipped: payload.type }), {
+      status: 200,
       headers: { "content-type": "application/json" },
     });
   }

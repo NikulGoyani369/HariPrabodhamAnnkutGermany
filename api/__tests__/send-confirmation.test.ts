@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import handler, { buildEmail } from './send-confirmation'
+import handler, { buildEmail } from '../send-confirmation'
 
 describe('buildEmail', () => {
   it('includes the guest name and party size in the plain-text body', () => {
@@ -120,5 +120,21 @@ describe('send-confirmation handler', () => {
     vi.mocked(fetch).mockRejectedValue(new Error('network down'))
     const res = await handler(makeRequest(validPayload, { 'x-webhook-secret': SECRET }))
     expect(res.status).toBe(502)
+  })
+
+  it('returns 200 without calling Resend for non-INSERT webhook events (UPDATE)', async () => {
+    const updatePayload = { ...validPayload, type: 'UPDATE' }
+    const res = await handler(makeRequest(updatePayload, { 'x-webhook-secret': SECRET }))
+    expect(res.status).toBe(200)
+    expect(fetch).not.toHaveBeenCalled()
+    const body = await res.json()
+    expect(body).toEqual({ ok: true, skipped: 'UPDATE' })
+  })
+
+  it('returns 200 without calling Resend for non-INSERT webhook events (DELETE)', async () => {
+    const deletePayload = { ...validPayload, type: 'DELETE' }
+    const res = await handler(makeRequest(deletePayload, { 'x-webhook-secret': SECRET }))
+    expect(res.status).toBe(200)
+    expect(fetch).not.toHaveBeenCalled()
   })
 })
