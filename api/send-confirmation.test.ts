@@ -115,4 +115,10 @@ describe('send-confirmation handler', () => {
     expect(res.status).toBe(400)
     expect(fetch).not.toHaveBeenCalled()
   })
+
+  it('returns 502 and does not throw when fetch rejects with a network error', async () => {
+    vi.mocked(fetch).mockRejectedValue(new Error('network down'))
+    const res = await handler(makeRequest(validPayload, { 'x-webhook-secret': SECRET }))
+    expect(res.status).toBe(502)
+  })
 })
