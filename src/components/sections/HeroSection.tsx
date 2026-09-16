@@ -24,34 +24,22 @@ export default function HeroSection() {
 
   return (
     <Box component="section" id="hero" sx={s.outerBox}>
-      <Box aria-hidden="true" sx={s.emberGlow} />
+      <Box aria-hidden="true" sx={s.photoBand}>
+        <Box aria-hidden="true" sx={s.photoBandFade} />
+      </Box>
 
-      <Container
-        maxWidth="md"
-        sx={{ position: 'relative', zIndex: 2, textAlign: 'center' }}
-      >
-        <Typography component="p" sx={{ ...s.overline }}>
+      <Container maxWidth="md" sx={{ textAlign: 'center' }}>
+        <Typography component="p" sx={s.overline}>
           {EVENT.presents}
         </Typography>
-        <Typography sx={s.kicker}>{EVENT.kicker}</Typography>
-        <Typography
-          component="h1"
-          sx={
-            [
-              s.title,
-              {
-                background: `linear-gradient(90deg, ${C.ink}, ${C.saffronDeep}, ${C.gold})`,
-                backgroundClip: 'text',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              },
-            ] as SxProps<Theme>
-          }
-        >
-          {EVENT.title}
-        </Typography>
-        <Typography variant="h3" component="p" sx={{ mt: 1, color: C.lilacDeep }}>
-          {EVENT.tagline}
+
+        <Typography component="h1" sx={{ m: 0 }}>
+          <Box
+            component="img"
+            src="/images/title-lockup.png"
+            alt={`${EVENT.title} Utsav — ${EVENT.tagline}`}
+            sx={s.titleImg}
+          />
         </Typography>
 
         <Box sx={s.metaRow}>
@@ -78,7 +66,7 @@ export default function HeroSection() {
           </Stack>
         ) : (
           <Typography sx={{ mt: 3, color: C.inkSoft }}>
-            RSVP is not open at the moment.{' '}
+            Registration is not open at the moment.{' '}
             <Link component={RouterLink} to="/venue" sx={{ fontWeight: 600 }}>
               Learn more
             </Link>
@@ -106,35 +94,6 @@ export default function HeroSection() {
           ))}
         </Box>
       </Container>
-
-      <Box
-        component="svg"
-        viewBox="0 0 1440 160"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-        sx={{
-          ...s.waveBottom,
-          width: '100%',
-          height: { xs: 50, md: 110 },
-          display: 'block',
-        }}
-      >
-        <path
-          d="M0,70 C300,10 620,120 960,55 C1180,15 1320,80 1440,50 L1440,160 L0,160 Z"
-          fill={C.blush}
-          fillOpacity="0.3"
-        />
-        <path
-          d="M0,80 C360,20 720,130 1080,60 C1260,25 1380,90 1440,60 L1440,160 L0,160 Z"
-          fill={C.mint}
-          fillOpacity="0.38"
-        />
-        <path
-          d="M0,110 C240,60 480,140 720,100 C960,55 1200,130 1440,90 L1440,160 L0,160 Z"
-          fill={C.lilac}
-          fillOpacity="0.34"
-        />
-      </Box>
     </Box>
   )
 }

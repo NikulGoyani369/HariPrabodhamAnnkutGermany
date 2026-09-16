@@ -16,10 +16,10 @@ beforeEach(() => {
 })
 
 describe('HeroSection', () => {
-  it('renders the event tagline', () => {
+  it('renders the event title as the hero heading', () => {
     regOpen.mockReturnValue(true)
     renderHero()
-    expect(screen.getByText(/the divine spark/i)).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1, name: /the divine spark/i })).toBeInTheDocument()
   })
 
   it('opens the modal from "Register Now" when registration is open', async () => {

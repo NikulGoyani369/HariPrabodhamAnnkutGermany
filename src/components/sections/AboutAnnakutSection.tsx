@@ -9,6 +9,7 @@ import {
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import { ABOUT_ANNAKUT, FAQS } from '../../data/data'
 import { C } from '../../theme/theme'
+import SectionDivider from '../common/SectionDivider'
 
 export default function AboutAnnakutSection() {
   return (
@@ -25,34 +26,7 @@ export default function AboutAnnakutSection() {
           {ABOUT_ANNAKUT.heading}
         </Typography>
 
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: 1.25,
-            mt: 1.75,
-            mb: 4,
-            color: C.goldLight,
-            fontSize: 14,
-          }}
-        >
-          <Box
-            sx={{
-              height: '1px',
-              width: 40,
-              background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)`,
-            }}
-          />
-          ✦
-          <Box
-            sx={{
-              height: '1px',
-              width: 40,
-              background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)`,
-            }}
-          />
-        </Box>
+        <SectionDivider sx={{ mt: 1.75, mb: 4 }} />
 
         {ABOUT_ANNAKUT.paragraphs.map((p, i) => (
           <Typography

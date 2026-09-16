@@ -8,9 +8,9 @@ describe('buildEmail', () => {
     expect(text).toContain('Party size: 3')
   })
 
-  it('mentions the event title and RSVP confirmation in the subject', () => {
+  it('mentions the event title and registration confirmation in the subject', () => {
     const { subject } = buildEmail({ full_name: 'Asha Patel', email: 'asha@example.com', adults: 1, children: 0 })
-    expect(subject).toMatch(/RSVP is confirmed/i)
+    expect(subject).toMatch(/registration is confirmed/i)
   })
 
   it('escapes HTML in the guest name so it cannot inject markup into the email body', () => {

@@ -1,6 +1,7 @@
 import { Box, Container, Typography, Divider, Grid } from '@mui/material'
 import { GLANCE } from '../../data/data'
 import { C } from '../../theme/theme'
+import SectionDivider from '../common/SectionDivider'
 
 export default function GlanceSection() {
   return (
@@ -28,33 +29,7 @@ export default function GlanceSection() {
           >
             Annakut at a Glance
           </Typography>
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 1.25,
-              mt: 1.75,
-              color: C.goldLight,
-              fontSize: 14,
-            }}
-          >
-            <Box
-              sx={{
-                height: '1px',
-                width: 40,
-                background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)`,
-              }}
-            />
-            ✦
-            <Box
-              sx={{
-                height: '1px',
-                width: 40,
-                background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)`,
-              }}
-            />
-          </Box>
+          <SectionDivider sx={{ mt: 1.75 }} />
         </Box>
 
         {/* Desktop: one row with vertical dividers */}

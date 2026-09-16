@@ -23,23 +23,6 @@ import { C } from '../../theme/theme';
 import { useRsvpStore } from '../../store/rsvpStore';
 import { useRegistrationOpen } from '../../hooks/useRegistrationOpen';
 
-function BrandLogo() {
-  return (
-    <Box
-      component="img"
-      src="/images/logo.png"
-      alt="HariPrabodham Annakut logo"
-      fetchPriority="high"
-      sx={{
-        width: { xs: 72, md: 80 },
-        height: { xs: 72, md: 80 },
-        objectFit: 'contain',
-        flexShrink: 0,
-      }}
-    />
-  );
-}
-
 export default function Navbar() {
   const muiTheme = useTheme();
   const isMobile = useMediaQuery(muiTheme.breakpoints.down('md'));
@@ -81,7 +64,13 @@ export default function Navbar() {
           onKeyDown={(e) => e.key === 'Enter' && navigate('/')}
           aria-label="Go to home page"
         >
-          <BrandLogo />
+          <Box
+            component="img"
+            src="/images/lotus-mark.png"
+            alt=""
+            aria-hidden="true"
+            sx={s.brandMark}
+          />
           <Typography sx={s.brandText}>
             HariPrabodham
             <Typography

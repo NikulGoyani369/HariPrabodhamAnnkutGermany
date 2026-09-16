@@ -15,10 +15,10 @@ export default function RegistrationClosed({ onClose }: Props) {
         component="p"
         sx={{ fontFamily: '"Blue Mirage", serif', color: C.ink, mb: 1.5 }}
       >
-        RSVP is now closed
+        Registration is now closed
       </Typography>
       <Typography sx={{ color: C.inkSoft, fontSize: '0.95rem', mb: 2.5, maxWidth: 420, mx: 'auto' }}>
-        Jai Swaminarayan. RSVP for the HariPrabodham Annakut has now closed. For any
+        Jai Swaminarayan. Registration for the HariPrabodham Annakut has now closed. For any
         queries, please reach out through our{' '}
         <Link
           component={RouterLink}

@@ -27,6 +27,11 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     minWidth: 0,
     overflow: 'hidden',
   },
+  brandMark: {
+    width: { xs: 26, md: 30 },
+    height: 'auto',
+    flexShrink: 0,
+  },
   brandText: {
     fontFamily: '"Blue Mirage", serif',
     fontSize: { xs: 20, md: 24 },

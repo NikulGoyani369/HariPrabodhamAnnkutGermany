@@ -2,6 +2,7 @@ import { Box, Container, Typography } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { EVENT, FOOTER } from '../../data/data'
 import { C } from '../../theme/theme'
+import SectionDivider from '../common/SectionDivider'
 
 export default function Footer() {
   const navigate = useNavigate()
@@ -10,7 +11,7 @@ export default function Footer() {
     <Box
       component="footer"
       sx={{
-        background: `linear-gradient(180deg, ${C.saffronDeep}, ${C.ink})`,
+        background: `linear-gradient(180deg, color-mix(in srgb, ${C.lilacDeep} 55%, ${C.ink}), ${C.ink})`,
         color: `${C.ivory}E6`,
         pt: { xs: 5, md: 6 },
         pb: { xs: 3, md: 3.5 },
@@ -19,6 +20,13 @@ export default function Footer() {
       <Container maxWidth="lg">
         {/* Tagline */}
         <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 5 } }}>
+          <Box
+            component="img"
+            src="/images/lotus-mark.png"
+            alt=""
+            aria-hidden="true"
+            sx={{ width: 36, height: 'auto', mx: 'auto', mb: 1.5, display: 'block' }}
+          />
           <Typography
             sx={{
               fontFamily: '"Blue Mirage", serif',
@@ -45,12 +53,12 @@ export default function Footer() {
           </Typography>
         </Box>
 
+        <SectionDivider sx={{ mt: { xs: 4, md: 5 }, opacity: 0.9 }} />
+
         {/* Bottom bar */}
         <Box
           sx={{
-            mt: { xs: 4, md: 5 },
             pt: { xs: 2.5, md: 3 },
-            borderTop: `1px solid ${C.ivory}2E`,
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: { xs: 'center', sm: 'space-between' },

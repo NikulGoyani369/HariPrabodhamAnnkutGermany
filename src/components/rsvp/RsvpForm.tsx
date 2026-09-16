@@ -5,7 +5,7 @@ import {
 } from '@mui/material'
 import { Link as RouterLink } from 'react-router-dom'
 import { submitRsvp, type RsvpInput } from '../../api/rsvp'
-import { COUNTRIES, DARSHAN_SLOTS } from '../../data/data'
+import { COUNTRIES } from '../../data/data'
 import { C } from '../../theme/theme'
 import RsvpConfirmation from './RsvpConfirmation'
 import { rsvpFormStyles as s } from './RsvpForm.styles'
@@ -26,8 +26,6 @@ export default function RsvpForm({ onClose }: Props) {
   const [city, setCity] = useState('')
   const [adults, setAdults] = useState(1)
   const [children, setChildren] = useState(0)
-  const [darshanSlot, setDarshanSlot] = useState('')
-  const [notes, setNotes] = useState('')
   const [consent, setConsent] = useState(false)
   const [company, setCompany] = useState('') // honeypot
 
@@ -45,8 +43,6 @@ export default function RsvpForm({ onClose }: Props) {
     else if (!/^\d{6,15}$/.test(digits)) e.phone = 'Please enter a valid phone number (6–15 digits).'
     const c = city.trim()
     if (c.length < 2 || c.length > 60) e.city = 'Please enter your city or mandal.'
-    if (!darshanSlot) e.darshanSlot = 'Please choose a darshan time slot.'
-    if (notes.length > 500) e.notes = 'Notes must be 500 characters or fewer.'
     if (!consent) e.consent = 'Please confirm your consent to submit.'
     return e
   }
@@ -65,7 +61,7 @@ export default function RsvpForm({ onClose }: Props) {
     setStatus('submitting')
     setSubmitError('')
     const payload: RsvpInput = {
-      fullName, email, dialCode, phone, city, adults, children, darshanSlot, notes, consent,
+      fullName, email, dialCode, phone, city, adults, children, consent,
     }
     try {
       await submitRsvp(payload)
@@ -76,7 +72,7 @@ export default function RsvpForm({ onClose }: Props) {
       setSubmitError(
         /fetch|network|Failed to fetch/i.test(msg)
           ? "Couldn't reach the server. Check your connection and try again."
-          : 'Something went wrong submitting your RSVP. Please try again or contact us.',
+          : 'Something went wrong submitting your registration. Please try again or contact us.',
       )
       setStatus('error')
     }
@@ -87,7 +83,6 @@ export default function RsvpForm({ onClose }: Props) {
       <RsvpConfirmation
         name={fullName.trim()}
         partySize={adults + children}
-        slot={darshanSlot}
         onClose={onClose}
       />
     )
@@ -168,32 +163,6 @@ export default function RsvpForm({ onClose }: Props) {
             <MenuItem key={n} value={n}>{n}</MenuItem>
           ))}
         </TextField>
-        <TextField
-          select
-          sx={s.full}
-          label="Darshan time slot"
-          value={darshanSlot}
-          onChange={(e) => setDarshanSlot(e.target.value)}
-          error={!!errors.darshanSlot}
-          helperText={errors.darshanSlot}
-          slotProps={SELECT_SLOT_PROPS}
-          fullWidth
-        >
-          {DARSHAN_SLOTS.map((slot) => (
-            <MenuItem key={slot} value={slot}>{slot}</MenuItem>
-          ))}
-        </TextField>
-        <TextField
-          sx={s.full}
-          label="Notes (optional)"
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-          error={!!errors.notes}
-          helperText={errors.notes || `${notes.length}/500`}
-          multiline
-          minRows={2}
-          fullWidth
-        />
       </Box>
 
       {/* Honeypot — visually hidden, not tab-reachable */}
@@ -249,7 +218,7 @@ export default function RsvpForm({ onClose }: Props) {
 
       <Box sx={s.submitRow}>
         <Button type="submit" variant="contained" size="large" disabled={status === 'submitting'}>
-          {status === 'submitting' ? 'Submitting…' : 'Submit RSVP'}
+          {status === 'submitting' ? 'Submitting…' : 'Submit Registration'}
         </Button>
       </Box>
     </Box>

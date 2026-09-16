@@ -76,9 +76,8 @@ export default function DataPrivacyPage() {
             {/* PLACEHOLDER — organiser to replace with the full privacy notice */}
             <Section title="Data Privacy">
               <Para>
-                Privacy notice to be completed by the organiser. RSVP data (name, contact details,
-                party size, darshan slot, notes) is stored solely to organise this event and is not
-                shared.
+                Privacy notice to be completed by the organiser. Registration data (name, contact details,
+                party size) is stored solely to organise this event and is not shared.
               </Para>
               <Para>
                 Email:{' '}

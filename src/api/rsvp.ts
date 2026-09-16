@@ -8,15 +8,12 @@ export interface RsvpInput {
   city: string
   adults: number
   children: number
-  darshanSlot: string
-  notes?: string
   consent: boolean
 }
 
 export async function submitRsvp(input: RsvpInput): Promise<{ id: string }> {
   const digits = input.phone.replace(/[^\d]/g, '')
   const dial = input.dialCode.replace(/^\+/, '')
-  const notes = input.notes?.trim() ? input.notes.trim() : null
 
   const row = {
     full_name: input.fullName.trim(),
@@ -25,8 +22,6 @@ export async function submitRsvp(input: RsvpInput): Promise<{ id: string }> {
     city: input.city.trim(),
     adults: input.adults,
     children: input.children,
-    darshan_slot: input.darshanSlot,
-    notes,
     consent: input.consent,
   }
 

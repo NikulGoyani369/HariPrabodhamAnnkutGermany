@@ -18,11 +18,11 @@ export function escapeHtml(input: string): string {
 
 export function buildEmail(record: RsvpRecord): { subject: string; text: string; html: string } {
   const partySize = record.adults + record.children;
-  const subject = `Your RSVP is confirmed — ${EVENT.title}`;
+  const subject = `Your registration is confirmed — ${EVENT.title}`;
 
   const text = `Jai Swaminarayan ${record.full_name},
 
-Your RSVP for ${EVENT.kicker} ${EVENT.title} — ${EVENT.tagline} is confirmed.
+Your registration for ${EVENT.kicker} ${EVENT.title} — ${EVENT.tagline} is confirmed.
 
 Party size: ${partySize}
 Date: ${EVENT.dateLabel}
@@ -32,7 +32,7 @@ Organiser: ${EVENT.organiser}
 We look forward to welcoming you.`;
 
   const html = `<p>Jai Swaminarayan ${escapeHtml(record.full_name)},</p>
-<p>Your RSVP for <strong>${escapeHtml(EVENT.kicker)} ${escapeHtml(EVENT.title)} — ${escapeHtml(EVENT.tagline)}</strong> is confirmed.</p>
+<p>Your registration for <strong>${escapeHtml(EVENT.kicker)} ${escapeHtml(EVENT.title)} — ${escapeHtml(EVENT.tagline)}</strong> is confirmed.</p>
 <ul>
   <li><strong>Party size:</strong> ${partySize}</li>
   <li><strong>Date:</strong> ${escapeHtml(EVENT.dateLabel)}</li>

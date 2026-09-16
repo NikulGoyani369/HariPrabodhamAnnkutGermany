@@ -1,31 +1,31 @@
 import type { SxProps, Theme } from '@mui/material'
-import { C, HERO_GRADIENT } from '../../theme/theme'
+import { C } from '../../theme/theme'
 
 export const heroStyles: Record<string, SxProps<Theme>> = {
   outerBox: {
-    background: HERO_GRADIENT,
+    background: C.ivory,
     overflow: 'hidden',
-    position: 'relative',
-    isolation: 'isolate',
-    pt: { xs: '56px', md: '104px' },
-    pb: { xs: '90px', md: '170px' },
+    pb: { xs: '56px', md: '80px' },
   },
 
-  // Soft warm glow behind the title — echoes the uplit stage look.
-  emberGlow: {
+  // The stage photo from the event poster — a clean, unobstructed band up
+  // top (nothing overlaps the murtis), fading into the page background.
+  photoBand: {
+    position: 'relative',
+    height: { xs: 220, sm: 320, md: 460 },
+    backgroundImage: 'url(/images/hero-stage.jpg)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center 22%',
+  },
+
+  photoBandFade: {
     position: 'absolute',
-    top: { xs: '16%', md: '20%' },
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: { xs: 300, md: 560 },
-    height: { xs: 220, md: 340 },
-    background: `radial-gradient(circle at 50% 50%, ${C.peach}26, transparent 70%)`,
-    filter: 'blur(40px)',
-    pointerEvents: 'none',
-    zIndex: 0,
+    inset: 0,
+    background: `linear-gradient(180deg, transparent 55%, ${C.ivory} 100%)`,
   },
 
   overline: {
+    mt: { xs: 3.5, md: 5 },
     fontSize: { xs: '0.7rem', md: '0.78rem' },
     letterSpacing: '0.22em',
     textTransform: 'uppercase' as const,
@@ -33,22 +33,15 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     color: C.mintDeep,
   },
 
-  kicker: {
-    mt: 1.5,
-    fontFamily: '"Cormorant Garamond", "Cormorant", Georgia, serif',
-    fontStyle: 'italic',
-    fontSize: { xs: '1.4rem', md: '1.9rem' },
-    color: C.gold,
-    lineHeight: 1.1,
-  },
-
-  // Fallback color for browsers that don't support background-clip: text —
-  // the gradient fill itself is applied at the call site (HeroSection.tsx).
-  title: {
-    fontFamily: '"Blue Mirage", serif',
-    fontSize: { xs: '3rem', md: '5rem' },
-    color: C.ink,
-    lineHeight: 1,
+  // The title is now the poster's lockup image (see HeroSection.tsx) — this
+  // controls its display width, centered, responsive.
+  titleImg: {
+    display: 'block',
+    mx: 'auto',
+    mt: 2.5,
+    width: { xs: '86%', sm: 420, md: 620 },
+    maxWidth: '100%',
+    height: 'auto',
   },
 
   metaRow: {
@@ -118,11 +111,4 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     fontWeight: 600,
   },
 
-  waveBottom: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: -1,
-    pointerEvents: 'none',
-  },
 }

@@ -8,12 +8,17 @@ import RsvpModal from './components/rsvp/RsvpModal'
 import HeroSection from './components/sections/HeroSection'
 import GlanceSection from './components/sections/GlanceSection'
 import AboutAnnakutSection from './components/sections/AboutAnnakutSection'
+import SectionDivider from './components/common/SectionDivider'
+import RequireAdmin from './components/admin/RequireAdmin'
+import AdminShell from './components/admin/AdminShell'
 import { usePageMeta } from './hooks/usePageMeta'
 
 const VenuePage       = lazy(() => import('./pages/VenuePage'))
 const ContactPage     = lazy(() => import('./pages/ContactPage'))
 const ImpressumPage   = lazy(() => import('./pages/ImpressumPage'))
 const DataPrivacyPage = lazy(() => import('./pages/DataPrivacyPage'))
+const AdminLoginPage     = lazy(() => import('./pages/admin/AdminLoginPage'))
+const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'))
 
 function PageLoader() {
   return (
@@ -35,11 +40,14 @@ export function PageShell({ children }: { children: ReactNode }) {
 }
 
 function LandingPage() {
-  usePageMeta(undefined, 'HariPrabodham Annakut — The Divine Spark. Read about the celebration and RSVP for free.')
+  usePageMeta(undefined, 'HariPrabodham Annakut — The Divine Spark. Read about the celebration and register for free.')
   return (
     <PageShell>
       <HeroSection />
       <GlanceSection />
+      <Box sx={{ background: C.ivory, py: { xs: 4, md: 5 } }}>
+        <SectionDivider size="lg" />
+      </Box>
       <AboutAnnakutSection />
     </PageShell>
   )
@@ -68,6 +76,17 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/impressum" element={<ImpressumPage />} />
         <Route path="/data-privacy" element={<DataPrivacyPage />} />
+        <Route path="/admin/login" element={<AdminLoginPage />} />
+        <Route
+          path="/admin"
+          element={
+            <RequireAdmin>
+              <AdminShell>
+                <AdminDashboardPage />
+              </AdminShell>
+            </RequireAdmin>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>

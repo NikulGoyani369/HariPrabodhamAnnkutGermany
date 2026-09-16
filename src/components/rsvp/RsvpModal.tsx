@@ -73,10 +73,10 @@ export default function RsvpModal() {
             textTransform: 'uppercase', color: C.gold, fontWeight: 600, mb: 1,
           }}
         >
-          {open ? 'Reserve your place' : 'RSVP'}
+          {open ? 'Reserve your place' : 'Registration'}
         </Typography>
         <Typography id="rsvp-dialog-title" variant="h2" component="p" sx={{ fontFamily: '"Blue Mirage", serif', fontSize: { xs: '1.6rem', md: '2rem' }, lineHeight: 1.2 }}>
-          RSVP
+          Registration
         </Typography>
         <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.25, mt: 2, mb: 1 }}>
           <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)` }} />

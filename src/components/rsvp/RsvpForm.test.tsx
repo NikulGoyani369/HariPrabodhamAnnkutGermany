@@ -21,9 +21,7 @@ async function fillValid(user: ReturnType<typeof userEvent.setup>) {
   await user.type(screen.getByLabelText(/email/i), 'asha@example.com')
   await user.type(screen.getByLabelText(/phone/i), '030 1234567')
   await user.type(screen.getByLabelText(/city \/ mandal/i), 'Berlin')
-  // Adults defaults to 1, children to 0, dial code to +49, darshan slot needs a pick:
-  await user.click(screen.getByLabelText(/darshan time slot/i))
-  await user.click(screen.getByRole('option', { name: /morning/i }))
+  // Adults defaults to 1, children to 0, dial code to +49.
   // The form has exactly one checkbox (the consent control); its accessible
   // name is now the full visible consent statement, so select it by role only.
   await user.click(screen.getByRole('checkbox'))
@@ -38,12 +36,11 @@ describe('RsvpForm', () => {
   it('shows errors for every required field on empty submit and does not call the API', async () => {
     const user = userEvent.setup()
     renderForm()
-    await user.click(screen.getByRole('button', { name: /submit rsvp/i }))
+    await user.click(screen.getByRole('button', { name: /submit registration/i }))
     expect(await screen.findByText(/enter your name/i)).toBeInTheDocument()
     expect(screen.getByText(/enter a valid email/i)).toBeInTheDocument()
     expect(screen.getByText(/enter your phone/i)).toBeInTheDocument()
     expect(screen.getByText(/enter your city/i)).toBeInTheDocument()
-    expect(screen.getByText(/choose a darshan/i)).toBeInTheDocument()
     expect(screen.getByText(/please confirm your consent/i)).toBeInTheDocument()
     expect(submitRsvp).not.toHaveBeenCalled()
   })
@@ -53,7 +50,7 @@ describe('RsvpForm', () => {
     renderForm()
     await user.type(screen.getByLabelText(/email/i), 'not-an-email')
     await user.type(screen.getByLabelText(/phone/i), '123')
-    await user.click(screen.getByRole('button', { name: /submit rsvp/i }))
+    await user.click(screen.getByRole('button', { name: /submit registration/i }))
     expect(await screen.findByText(/enter a valid email/i)).toBeInTheDocument()
     expect(screen.getByText(/enter a valid phone/i)).toBeInTheDocument()
     expect(submitRsvp).not.toHaveBeenCalled()
@@ -66,9 +63,7 @@ describe('RsvpForm', () => {
     await user.type(screen.getByLabelText(/email/i), 'asha@example.com')
     await user.type(screen.getByLabelText(/phone/i), '030 1234567')
     await user.type(screen.getByLabelText(/city \/ mandal/i), 'Berlin')
-    await user.click(screen.getByLabelText(/darshan time slot/i))
-    await user.click(screen.getByRole('option', { name: /morning/i }))
-    await user.click(screen.getByRole('button', { name: /submit rsvp/i }))
+    await user.click(screen.getByRole('button', { name: /submit registration/i }))
     expect(await screen.findByText(/please confirm your consent/i)).toBeInTheDocument()
     expect(submitRsvp).not.toHaveBeenCalled()
   })
@@ -77,7 +72,7 @@ describe('RsvpForm', () => {
     const user = userEvent.setup()
     renderForm()
     await fillValid(user)
-    await user.click(screen.getByRole('button', { name: /submit rsvp/i }))
+    await user.click(screen.getByRole('button', { name: /submit registration/i }))
     await waitFor(() => expect(submitRsvp).toHaveBeenCalledTimes(1))
     expect(submitRsvp).toHaveBeenCalledWith({
       fullName: 'Asha Patel',
@@ -87,8 +82,6 @@ describe('RsvpForm', () => {
       city: 'Berlin',
       adults: 1,
       children: 0,
-      darshanSlot: 'Morning — 09:00–12:00',
-      notes: '',
       consent: true,
     })
   })
@@ -97,8 +90,8 @@ describe('RsvpForm', () => {
     const user = userEvent.setup()
     renderForm()
     await fillValid(user)
-    await user.click(screen.getByRole('button', { name: /submit rsvp/i }))
-    expect(await screen.findByText(/your rsvp is received/i)).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /submit registration/i }))
+    expect(await screen.findByText(/your registration is received/i)).toBeInTheDocument()
     expect(screen.getByText(/Asha Patel/)).toBeInTheDocument()
   })
 
@@ -107,7 +100,7 @@ describe('RsvpForm', () => {
     const user = userEvent.setup()
     renderForm()
     await fillValid(user)
-    await user.click(screen.getByRole('button', { name: /submit rsvp/i }))
+    await user.click(screen.getByRole('button', { name: /submit registration/i }))
     expect(await screen.findByRole('alert')).toBeInTheDocument()
     expect(screen.getByLabelText(/full name/i)).toHaveValue('Asha Patel')
   })
@@ -119,8 +112,8 @@ describe('RsvpForm', () => {
     const honeypot = container.querySelector('input[name="company"]') as HTMLInputElement
     // jsdom: set the value directly since the field is visually hidden
     await user.type(honeypot, 'spambot')
-    await user.click(screen.getByRole('button', { name: /submit rsvp/i }))
-    expect(await screen.findByText(/your rsvp is received/i)).toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: /submit registration/i }))
+    expect(await screen.findByText(/your registration is received/i)).toBeInTheDocument()
     expect(submitRsvp).not.toHaveBeenCalled()
   })
 })

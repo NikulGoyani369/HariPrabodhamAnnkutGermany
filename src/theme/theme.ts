@@ -108,7 +108,3 @@ export default theme
 
 export const PRIMARY   = C.saffron
 export const SECONDARY = C.mintDeep
-
-// Page-wide background: a very soft vertical gradient, ivory -> a faint
-// blush tint -> a faint mint tint. Barely perceptible by design.
-export const HERO_GRADIENT = `linear-gradient(180deg, ${C.ivory} 0%, #F7E6EA 50%, #EFE9E0 100%)`

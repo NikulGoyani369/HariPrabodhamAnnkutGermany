@@ -28,14 +28,14 @@ describe('RsvpModal', () => {
     isOpen.mockReturnValue(true)
     renderModal()
     act(() => { useRsvpStore.setState({ modalOpen: true }) })
-    expect(await screen.findByRole('button', { name: /submit rsvp/i })).toBeInTheDocument()
+    expect(await screen.findByRole('button', { name: /submit registration/i })).toBeInTheDocument()
   })
 
   it('shows the closed panel when registration is closed', async () => {
     isOpen.mockReturnValue(false)
     renderModal()
     act(() => { useRsvpStore.setState({ modalOpen: true }) })
-    expect(await screen.findByText(/rsvp is now closed/i)).toBeInTheDocument()
-    expect(screen.queryByRole('button', { name: /submit rsvp/i })).not.toBeInTheDocument()
+    expect(await screen.findByText(/registration is now closed/i)).toBeInTheDocument()
+    expect(screen.queryByRole('button', { name: /submit registration/i })).not.toBeInTheDocument()
   })
 })

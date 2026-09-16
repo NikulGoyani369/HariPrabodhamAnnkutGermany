@@ -1,4 +1,4 @@
-// Single source of truth for whether the RSVP form is open.
+// Single source of truth for whether the registration form is open.
 // Bounds come from two env vars; either may be blank (unbounded on that side).
 
 function parse(value: string | undefined): number | null {

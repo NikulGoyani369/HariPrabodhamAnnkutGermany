@@ -18,8 +18,6 @@ const base: RsvpInput = {
   city: 'Berlin',
   adults: 2,
   children: 1,
-  darshanSlot: 'Morning — 09:00–12:00',
-  notes: 'Arriving early',
   consent: true,
 }
 
@@ -50,8 +48,6 @@ describe('submitRsvp', () => {
         city: 'Berlin',
         adults: 2,
         children: 1,
-        darshan_slot: 'Morning — 09:00–12:00',
-        notes: 'Arriving early',
         consent: true,
       }),
     )
@@ -64,11 +60,6 @@ describe('submitRsvp', () => {
     // the id passed to insert is the same id returned to the caller
     const row = mockInsert.mock.calls[0][0] as { id: string }
     expect(result.id).toBe(row.id)
-  })
-
-  it('maps blank notes to null', async () => {
-    await submitRsvp({ ...base, notes: '   ' })
-    expect(mockInsert).toHaveBeenCalledWith(expect.objectContaining({ notes: null }))
   })
 
   it('throws when Supabase returns an error', async () => {
