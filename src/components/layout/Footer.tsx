@@ -29,7 +29,7 @@ export default function Footer() {
           />
           <Typography
             sx={{
-              fontFamily: '"Blue Mirage", serif',
+              fontFamily: '"GC Commune", serif',
               fontSize: { xs: '1.25rem', md: 'clamp(1.25rem, 2.4vw, 1.75rem)' },
               color: C.ivory,
               lineHeight: 1.4,
@@ -41,7 +41,7 @@ export default function Footer() {
             sx={{
               display: 'block',
               mt: 1,
-              fontFamily: '"Blue Mirage", serif',
+              fontFamily: '"GC Commune", serif',
               fontSize: { xs: '0.7rem', md: '0.75rem' },
               letterSpacing: '0.18em',
               textTransform: 'uppercase',

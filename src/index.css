@@ -1,15 +1,10 @@
 @font-face {
-  font-family: 'Blue Mirage';
-  src: url('/fonts/blue_mirage-webfont.woff2') format('woff2');
+  font-family: 'GC Commune';
+  src: url('/fonts/GC%20commune.woff2') format('woff2'),
+    url('/fonts/GC%20commune.woff') format('woff'),
+    url('/fonts/GC%20commune.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Blue Mirage';
-  src: url('/fonts/blue_mirage-webfont.woff2') format('woff2');
-  font-weight: normal;
-  font-style: italic;
   font-display: swap;
 }
 

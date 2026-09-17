@@ -1,6 +1,6 @@
 import { Box, Container, Typography, Button } from '@mui/material'
 import { C } from '../../theme/theme'
-import { EVENT, VENUE, DARSHAN_SLOTS } from '../../data/data'
+import { EVENT, VENUE } from '../../data/data';
 
 function Ornament() {
   return (
@@ -31,12 +31,12 @@ function Ornament() {
         }}
       />
     </Box>
-  )
+  );
 }
 
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
   VENUE.addressLines.join(', '),
-)}`
+)}`;
 
 export default function VenueSection() {
   return (
@@ -54,7 +54,7 @@ export default function VenueSection() {
           <Typography
             component="span"
             sx={{
-              fontFamily: '"Blue Mirage", serif',
+              fontFamily: '"GC Commune", serif',
               fontSize: '1rem',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
@@ -67,7 +67,7 @@ export default function VenueSection() {
           <Typography
             variant="h2"
             component="h1"
-            sx={{ mt: 1, color: C.ink, fontFamily: '"Blue Mirage", serif' }}
+            sx={{ mt: 1, color: C.ink, fontFamily: '"GC Commune", serif' }}
           >
             The Venue
           </Typography>
@@ -94,8 +94,11 @@ export default function VenueSection() {
               variant="h2"
               component="h3"
               sx={{
-                fontFamily: '"Blue Mirage", serif',
-                fontSize: { xs: '1.75rem', md: 'clamp(1.9rem, 3.4vw, 2.75rem)' },
+                fontFamily: '"GC Commune", serif',
+                fontSize: {
+                  xs: '1.75rem',
+                  md: 'clamp(1.9rem, 3.4vw, 2.75rem)',
+                },
                 color: C.ink,
               }}
             >
@@ -173,7 +176,7 @@ export default function VenueSection() {
             <Typography
               variant="h3"
               sx={{
-                fontFamily: '"Blue Mirage", serif',
+                fontFamily: '"GC Commune", serif',
                 color: C.ink,
                 fontSize: { xs: '1.375rem', md: '1.6rem' },
               }}
@@ -212,52 +215,8 @@ export default function VenueSection() {
               ))}
             </Box>
           </Box>
-
-          <Box>
-            <Typography
-              variant="h3"
-              sx={{
-                fontFamily: '"Blue Mirage", serif',
-                color: C.ink,
-                fontSize: { xs: '1.375rem', md: '1.6rem' },
-              }}
-            >
-              Darshan timings
-            </Typography>
-            <Box
-              component="ul"
-              sx={{
-                mt: 1.5,
-                pl: 0,
-                listStyle: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: 1.1,
-              }}
-            >
-              {DARSHAN_SLOTS.map((slot) => (
-                <Box
-                  component="li"
-                  key={slot}
-                  sx={{
-                    display: 'flex',
-                    gap: 1,
-                    alignItems: 'baseline',
-                    fontSize: { xs: 14, md: 14.5 },
-                    lineHeight: 1.6,
-                    color: C.ink,
-                  }}
-                >
-                  <Box component="span" sx={{ color: C.mintDeep }}>
-                    •
-                  </Box>
-                  <span>{slot}</span>
-                </Box>
-              ))}
-            </Box>
-          </Box>
         </Box>
       </Container>
     </Box>
-  )
+  );
 }

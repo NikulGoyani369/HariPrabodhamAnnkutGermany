@@ -21,7 +21,7 @@ export default function AboutAnnakutSection() {
       <Container maxWidth="md" sx={{ textAlign: 'center' }}>
         <Typography
           variant="h2"
-          sx={{ fontFamily: '"Blue Mirage", serif', color: C.ink }}
+          sx={{ fontFamily: '"GC Commune", serif', color: C.ink }}
         >
           {ABOUT_ANNAKUT.heading}
         </Typography>

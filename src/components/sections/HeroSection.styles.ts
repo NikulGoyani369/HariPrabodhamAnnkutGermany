@@ -12,10 +12,10 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
   // top (nothing overlaps the murtis), fading into the page background.
   photoBand: {
     position: 'relative',
-    height: { xs: 220, sm: 320, md: 460 },
+    height: { xs: 260, sm: 380, md: 750 },
     backgroundImage: 'url(/images/hero-stage.jpg)',
     backgroundSize: 'cover',
-    backgroundPosition: 'center 22%',
+    backgroundPosition: 'center 40%',
   },
 
   photoBandFade: {
@@ -44,6 +44,15 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     height: 'auto',
   },
 
+  highlight: {
+    mt: { xs: 1.5, md: 2 },
+    fontFamily: '"GC Commune", serif',
+    fontWeight: 600,
+    fontSize: { xs: '2.05rem', md: '2.3rem' },
+    letterSpacing: '0.02em',
+    color: '#DE7B8E',
+  },
+
   metaRow: {
     display: 'flex',
     alignItems: 'center',
@@ -53,7 +62,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     gap: '18px',
     mt: 2.5,
     color: C.inkSoft,
-    fontFamily: '"Blue Mirage", serif',
+    fontFamily: '"GC Commune", serif',
     fontSize: { xs: '1rem', md: '1.25rem' },
     '&::before, &::after': {
       content: '""',
@@ -110,5 +119,4 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     mt: { xs: 0.4, md: 0.75 },
     fontWeight: 600,
   },
-
-}
+};

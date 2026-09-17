@@ -29,10 +29,6 @@ export default function HeroSection() {
       </Box>
 
       <Container maxWidth="md" sx={{ textAlign: 'center' }}>
-        <Typography component="p" sx={s.overline}>
-          {EVENT.presents}
-        </Typography>
-
         <Typography component="h1" sx={{ m: 0 }}>
           <Box
             component="img"
@@ -42,8 +38,11 @@ export default function HeroSection() {
           />
         </Typography>
 
+        <Typography sx={s.highlight}>{EVENT.highlight}</Typography>
+
         <Box sx={s.metaRow}>
-          {EVENT.dateLabel}&nbsp;·&nbsp;{EVENT.venueName}&nbsp;·&nbsp;{EVENT.city}
+          {EVENT.dateLabel}&nbsp;·&nbsp;{EVENT.venueName}&nbsp;·&nbsp;
+          {EVENT.city}
         </Box>
 
         {registrationOpen ? (
@@ -95,5 +94,5 @@ export default function HeroSection() {
         </Box>
       </Container>
     </Box>
-  )
+  );
 }

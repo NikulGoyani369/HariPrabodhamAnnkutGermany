@@ -42,7 +42,7 @@ export default function ContactSection() {
           <Typography
             component="span"
             sx={{
-              fontFamily: '"Blue Mirage", serif',
+              fontFamily: '"GC Commune", serif',
               fontSize: '1rem',
               letterSpacing: '0.18em',
               textTransform: 'uppercase',
@@ -55,7 +55,7 @@ export default function ContactSection() {
           <Typography
             variant="h2"
             component="h1"
-            sx={{ mt: 1, color: C.ink, fontFamily: '"Blue Mirage", serif' }}
+            sx={{ mt: 1, color: C.ink, fontFamily: '"GC Commune", serif' }}
           >
             Contact
           </Typography>
@@ -117,7 +117,7 @@ export default function ContactSection() {
               sx={{
                 fontSize: '1.375rem',
                 fontStyle: 'italic',
-                fontFamily: '"Blue Mirage", serif',
+                fontFamily: '"GC Commune", serif',
                 color: C.gold,
               }}
             >
@@ -127,7 +127,7 @@ export default function ContactSection() {
               sx={{
                 fontSize: '1rem',
                 mt: 0.75,
-                fontFamily: '"Blue Mirage", serif',
+                fontFamily: '"GC Commune", serif',
                 color: C.gold,
               }}
             >
@@ -172,7 +172,7 @@ export default function ContactSection() {
               sx={{
                 fontSize: '1.375rem',
                 fontStyle: 'italic',
-                fontFamily: '"Blue Mirage", serif',
+                fontFamily: '"GC Commune", serif',
                 color: C.gold,
               }}
             >
@@ -182,7 +182,7 @@ export default function ContactSection() {
               sx={{
                 fontSize: '1rem',
                 mt: 0.75,
-                fontFamily: '"Blue Mirage", serif',
+                fontFamily: '"GC Commune", serif',
                 color: C.gold,
               }}
             >

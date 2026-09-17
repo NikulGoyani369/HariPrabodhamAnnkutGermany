@@ -33,7 +33,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     flexShrink: 0,
   },
   brandText: {
-    fontFamily: '"Blue Mirage", serif',
+    fontFamily: '"GC Commune", serif',
     fontSize: { xs: 20, md: 24 },
     lineHeight: 1.05,
     color: C.ink,
@@ -48,7 +48,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     color: C.ink,
     fontStyle: 'normal',
     letterSpacing: '0.02em',
-    fontFamily: '"Blue Mirage", "Inter", sans-serif',
+    fontFamily: '"GC Commune", "Inter", sans-serif',
   },
   desktopNav: {
     display: 'flex',
@@ -60,7 +60,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
   navButton: {
     fontSize: 16,
     fontWeight: 500,
-    fontFamily: '"Blue Mirage", serif',
+    fontFamily: '"GC Commune", serif',
     color: C.inkSoft,
     px: 1.5,
     py: 0.75,

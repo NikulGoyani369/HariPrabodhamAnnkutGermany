@@ -165,7 +165,7 @@ export default function Navbar() {
               onClick={registrationOpen ? openModal : () => navigate('/venue')}
               sx={{
                 ...s.registerButton,
-                fontFamily: '"Blue Mirage", serif',
+                fontFamily: '"GC Commune", serif',
                 fontSize: 17,
               }}
             >

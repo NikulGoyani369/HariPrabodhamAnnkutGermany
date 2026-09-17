@@ -13,7 +13,7 @@ export default function RegistrationClosed({ onClose }: Props) {
       <Typography
         variant="h3"
         component="p"
-        sx={{ fontFamily: '"Blue Mirage", serif', color: C.ink, mb: 1.5 }}
+        sx={{ fontFamily: '"GC Commune", serif', color: C.ink, mb: 1.5 }}
       >
         Registration is now closed
       </Typography>

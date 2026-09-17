@@ -13,9 +13,9 @@ export default function RsvpConfirmation({ name, partySize, onClose }: Props) {
       <Typography
         variant="h3"
         component="p"
-        sx={{ fontFamily: '"Blue Mirage", serif', color: C.ink, mb: 1.5 }}
+        sx={{ fontFamily: '"GC Commune", serif', color: C.ink, mb: 1.5 }}
       >
-        Jai Swaminarayan 🙏
+        see live share - The divine 🙏
       </Typography>
       <Typography sx={{ color: C.inkSoft, mb: 2.5 }}>
         Your registration is received.

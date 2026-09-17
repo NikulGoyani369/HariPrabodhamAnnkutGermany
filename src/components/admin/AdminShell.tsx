@@ -20,7 +20,7 @@ export default function AdminShell({ children }: { children: ReactNode }) {
     <Box sx={{ minHeight: '100vh', background: C.ivory }}>
       <AppBar position="static" elevation={0} sx={{ background: C.ink }}>
         <Toolbar sx={{ justifyContent: 'space-between', gap: 2 }}>
-          <Typography sx={{ fontFamily: '"Blue Mirage", serif', fontSize: 18, color: C.ivory }}>
+          <Typography sx={{ fontFamily: '"GC Commune", serif', fontSize: 18, color: C.ivory }}>
             HariPrabodham Annakut — Admin
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>

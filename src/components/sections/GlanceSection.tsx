@@ -22,7 +22,7 @@ export default function GlanceSection() {
             variant="h2"
             sx={{
               mt: 0.75,
-              fontFamily: '"Blue Mirage", serif',
+              fontFamily: '"GC Commune", serif',
               fontSize: { xs: '1.75rem', md: 'clamp(1.9rem, 3.4vw, 2.75rem)' },
               color: C.ink,
             }}
@@ -63,7 +63,7 @@ export default function GlanceSection() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: '"Blue Mirage", serif',
+                      fontFamily: '"GC Commune", serif',
                       fontWeight: 700,
                       fontSize: { md: '0.68rem', lg: '0.78rem' },
                       letterSpacing: { md: '0.06em', lg: '0.1em' },
@@ -120,7 +120,7 @@ export default function GlanceSection() {
                   </Typography>
                   <Typography
                     sx={{
-                      fontFamily: '"Blue Mirage", serif',
+                      fontFamily: '"GC Commune", serif',
                       fontWeight: 700,
                       fontSize: '0.72rem',
                       letterSpacing: '0.08em',

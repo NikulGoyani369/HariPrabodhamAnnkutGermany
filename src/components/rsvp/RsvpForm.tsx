@@ -147,8 +147,10 @@ export default function RsvpForm({ onClose }: Props) {
           slotProps={SELECT_SLOT_PROPS}
           fullWidth
         >
-          {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => (
-            <MenuItem key={n} value={n}>{n}</MenuItem>
+          {Array.from({ length: 5 }, (_, i) => i + 1).map((n) => (
+            <MenuItem key={n} value={n}>
+              {n}
+            </MenuItem>
           ))}
         </TextField>
         <TextField
@@ -159,8 +161,10 @@ export default function RsvpForm({ onClose }: Props) {
           slotProps={SELECT_SLOT_PROPS}
           fullWidth
         >
-          {Array.from({ length: 11 }, (_, i) => i).map((n) => (
-            <MenuItem key={n} value={n}>{n}</MenuItem>
+          {Array.from({ length: 5 }, (_, i) => i).map((n) => (
+            <MenuItem key={n} value={n}>
+              {n}
+            </MenuItem>
           ))}
         </TextField>
       </Box>
@@ -192,7 +196,9 @@ export default function RsvpForm({ onClose }: Props) {
               onChange={(e) => setConsent(e.target.checked)}
               slotProps={{
                 input: {
-                  'aria-describedby': errors.consent ? 'consent-error' : undefined,
+                  'aria-describedby': errors.consent
+                    ? 'consent-error'
+                    : undefined,
                 },
               }}
             />
@@ -213,14 +219,21 @@ export default function RsvpForm({ onClose }: Props) {
       </FormControl>
 
       {status === 'error' && (
-        <Alert severity="error" role="alert" sx={{ mt: 2 }}>{submitError}</Alert>
+        <Alert severity="error" role="alert" sx={{ mt: 2 }}>
+          {submitError}
+        </Alert>
       )}
 
       <Box sx={s.submitRow}>
-        <Button type="submit" variant="contained" size="large" disabled={status === 'submitting'}>
+        <Button
+          type="submit"
+          variant="contained"
+          size="large"
+          disabled={status === 'submitting'}
+        >
           {status === 'submitting' ? 'Submitting…' : 'Submit Registration'}
         </Button>
       </Box>
     </Box>
-  )
+  );
 }
