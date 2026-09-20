@@ -8,7 +8,10 @@ import { useRsvpStore } from '../../store/rsvpStore'
 const isOpen = vi.fn()
 const submitRsvp = vi.fn()
 vi.mock('../../utils/registrationGate', () => ({ isRegistrationOpenNow: () => isOpen() }))
-vi.mock('../../api/rsvp', () => ({ submitRsvp: (...a: unknown[]) => submitRsvp(...a) }))
+vi.mock('../../api/rsvp', () => ({
+  submitRsvp: (...a: unknown[]) => submitRsvp(...a),
+  normaliseName: (v: string) => v.trim(),
+}))
 
 function renderModal() {
   return render(<MemoryRouter><RsvpModal /></MemoryRouter>)

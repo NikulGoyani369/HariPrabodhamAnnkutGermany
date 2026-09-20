@@ -18,7 +18,7 @@ describe('routing', () => {
     // Hero renders the event title as the page's single <h1>; the tagline
     // below it is a plain <p>. Assert the hero heading rendered.
     expect(
-      await screen.findByRole('heading', { name: /annakut/i, level: 1 }),
+      await screen.findByRole('heading', { name: /annakoot/i, level: 1 }),
     ).toBeInTheDocument()
     // and the tagline text is present (Footer repeats it as plain text too).
     expect(screen.getAllByText(/the divine spark/i).length).toBeGreaterThan(0)

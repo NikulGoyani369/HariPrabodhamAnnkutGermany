@@ -13,7 +13,7 @@ import {
   Link,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
-import { submitRsvp, type RsvpInput } from "../../api/rsvp";
+import { submitRsvp, normaliseName, type RsvpInput } from "../../api/rsvp";
 import { COUNTRIES } from "../../data/data";
 import { C } from "../../theme/theme";
 import RsvpConfirmation from "./RsvpConfirmation";
@@ -129,7 +129,7 @@ export default function RsvpForm({ onClose, onSubmitted }: Props) {
   if (status === "success") {
     return (
       <RsvpConfirmation
-        name={fullName.trim()}
+        name={normaliseName(fullName)}
         partySize={partySize}
         onClose={onClose}
       />

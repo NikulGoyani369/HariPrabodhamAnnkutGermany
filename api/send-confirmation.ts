@@ -1,60 +1,34 @@
-import { EVENT } from "../src/data/data";
+import {
+  buildConfirmationEmail,
+  type RegistrationRecord,
+} from "./confirmationEmail";
 
-/** The `registrations` row Supabase sends in the webhook payload. */
-export interface RegistrationRecord {
-  name: string;
-  email: string;
-  /** Additional adults beyond the registrant. */
-  extra_adults: number;
-  children: number;
-}
+export { buildConfirmationEmail, escapeHtml } from "./confirmationEmail";
+export type { RegistrationRecord } from "./confirmationEmail";
 
-export function escapeHtml(input: string): string {
-  return input
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-}
-
-export function buildEmail(record: RegistrationRecord): { subject: string; text: string; html: string } {
-  // The registrant is always one adult on top of extra_adults.
-  const partySize = 1 + record.extra_adults + record.children;
-  const subject = `Your registration is confirmed — ${EVENT.title}`;
-
-  const text = `Jai Swaminarayan ${record.name},
-
-Your registration for ${EVENT.kicker} ${EVENT.title} — ${EVENT.tagline} is confirmed.
-
-Party size: ${partySize}
-Date: ${EVENT.dateLabel}
-Venue: ${EVENT.venueName}, ${EVENT.city}
-Organiser: ${EVENT.organiser}
-
-We look forward to welcoming you.`;
-
-  const html = `<p>Jai Swaminarayan ${escapeHtml(record.name)},</p>
-<p>Your registration for <strong>${escapeHtml(EVENT.kicker)} ${escapeHtml(EVENT.title)} — ${escapeHtml(EVENT.tagline)}</strong> is confirmed.</p>
-<ul>
-  <li><strong>Party size:</strong> ${partySize}</li>
-  <li><strong>Date:</strong> ${escapeHtml(EVENT.dateLabel)}</li>
-  <li><strong>Venue:</strong> ${escapeHtml(EVENT.venueName)}, ${escapeHtml(EVENT.city)}</li>
-  <li><strong>Organiser:</strong> ${escapeHtml(EVENT.organiser)}</li>
-</ul>
-<p>We look forward to welcoming you.</p>`;
-
-  return { subject, text, html };
-}
+import { FOOTER } from "../src/data/data";
 
 export const config = { runtime: "edge" };
+
+/**
+ * Sender address, from RESEND_EMAIL, used verbatim so the inbox shows the
+ * address itself rather than a display name. Resend verifies domains exactly,
+ * so this must sit on the domain verified in the Resend dashboard — a
+ * subdomain such as mail.example.de is NOT covered by a verified example.de.
+ */
+function fromAddress(): string | null {
+  return process.env.RESEND_EMAIL?.trim() || null;
+}
 
 export default async function handler(req: Request): Promise<Response> {
   if (req.method !== "POST") {
     return new Response("Method not allowed", { status: 405 });
   }
 
-  if (!process.env.RSVP_WEBHOOK_SECRET || !process.env.RESEND_API_KEY) {
+  const from = fromAddress();
+  // Fail loudly rather than sending from an unverified domain, which Resend
+  // rejects and which quietly costs the registrant their confirmation.
+  if (!process.env.RSVP_WEBHOOK_SECRET || !process.env.RESEND_API_KEY || !from) {
     return new Response("Not configured", { status: 500 });
   }
 
@@ -88,7 +62,7 @@ export default async function handler(req: Request): Promise<Response> {
     });
   }
 
-  const { subject, text, html } = buildEmail({
+  const { subject, text, html } = buildConfirmationEmail({
     name: record.name,
     email: record.email,
     extra_adults: record.extra_adults ?? 0,
@@ -103,8 +77,10 @@ export default async function handler(req: Request): Promise<Response> {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        from: "HariPrabodham Annakut <rsvp@thedivinespark.de>",
+        from,
         to: record.email,
+        // noreply senders cannot take replies, so point them at the organisers.
+        reply_to: FOOTER.email,
         subject,
         text,
         html,

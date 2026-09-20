@@ -5,7 +5,10 @@ import { MemoryRouter } from 'react-router-dom'
 import RsvpForm from './RsvpForm'
 
 const submitRsvp = vi.fn()
-vi.mock('../../api/rsvp', () => ({ submitRsvp: (...a: unknown[]) => submitRsvp(...a) }))
+vi.mock('../../api/rsvp', () => ({
+  submitRsvp: (...a: unknown[]) => submitRsvp(...a),
+  normaliseName: (v: string) => v.trim(),
+}))
 
 function renderForm(onClose: () => void = () => {}) {
   return render(

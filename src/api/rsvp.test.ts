@@ -7,7 +7,7 @@ vi.mock('../lib/supabase', () => ({
   },
 }))
 
-import { submitRsvp, type RsvpInput } from './rsvp'
+import { submitRsvp, normaliseName, type RsvpInput } from './rsvp'
 import { supabase } from '../lib/supabase'
 
 const base: RsvpInput = {
@@ -31,6 +31,26 @@ beforeEach(() => {
   // (the table has no anon SELECT policy).
   mockInsert = vi.fn().mockResolvedValue({ error: null })
   vi.mocked(supabase.from).mockReturnValue({ insert: mockInsert } as never)
+})
+
+describe('normaliseName', () => {
+  it('capitalises names typed in lowercase', () => {
+    expect(normaliseName('varun thakar')).toBe('Varun Thakar')
+  })
+
+  it('collapses stray whitespace', () => {
+    expect(normaliseName('  asha   patel ')).toBe('Asha Patel')
+  })
+
+  it('capitalises after hyphens and apostrophes', () => {
+    expect(normaliseName('anna-maria')).toBe('Anna-Maria')
+    expect(normaliseName("d'souza")).toBe("D'Souza")
+  })
+
+  it('leaves a word that already carries a capital alone', () => {
+    expect(normaliseName('McDonald')).toBe('McDonald')
+    expect(normaliseName('Varun THAKAR')).toBe('Varun THAKAR')
+  })
 })
 
 describe('submitRsvp', () => {

@@ -3,7 +3,7 @@
 // All values below are PLACEHOLDER content for the organiser to replace.
 
 export const EVENT = {
-  title: "Annakut",
+  title: "Annakoot",
   kicker: "HariPrabodham",
   tagline: "The Divine Spark",
   highlight: "See · Live · Share – The Divine",
@@ -107,8 +107,8 @@ export const VENUE = {
 
 export const FOOTER = {
   brand: "HariPrabodham Annakut",
-  legal: `© ${new Date().getFullYear()} HariPrabodham. All rights reserved.`,
-  email: "annakut@example.org", // PLACEHOLDER
+  legal: `© ${new Date().getFullYear()} Yogi Divine Society e.V.`,
+  email: "info@yds-germany.de",
   closing: "See Live Share - The divine 🙏",
 };
 
