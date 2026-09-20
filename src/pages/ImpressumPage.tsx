@@ -2,7 +2,6 @@ import { Box, Container, Typography } from '@mui/material'
 import type { ReactNode } from 'react'
 import { usePageMeta } from '../hooks/usePageMeta'
 import { PageShell } from '../App'
-import { FOOTER } from '../data/data'
 import { C } from '../theme/theme'
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
@@ -32,8 +31,22 @@ function Para({ children }: { children: ReactNode }) {
   )
 }
 
+function ExtLink({ href, children }: { href: string; children: ReactNode }) {
+  const external = href.startsWith('http')
+  return (
+    <Box
+      component="a"
+      href={href}
+      {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+      sx={{ color: C.mintDeep, '&:hover': { color: C.mintDeep }, transition: 'color .2s' }}
+    >
+      {children}
+    </Box>
+  )
+}
+
 export default function ImpressumPage() {
-  usePageMeta('Impressum', 'Legal notice for the HariPrabodham Annakut.')
+  usePageMeta('Impressum', 'Legal notice for the HariPrabodham Annakut Utsav.')
   return (
     <PageShell>
       <Box sx={{ background: C.ivory, minHeight: '100vh' }}>
@@ -73,20 +86,93 @@ export default function ImpressumPage() {
               p: { xs: 3.5, md: 5 },
             }}
           >
-            {/* PLACEHOLDER — organiser to replace with the full legal notice */}
-            <Section title="Impressum">
-              <Para>Provider information to be completed by the organiser.</Para>
+            <Section title="Information according to § 5 TMG">
+              <Para>Yogi Divine Society e.V.</Para>
+              <Para>Im Tal 16</Para>
+              <Para>14532 Kleinmachnow</Para>
+            </Section>
+
+            <Section title="Represented by">
+              <Para>Manfred Gutheins</Para>
+              <Para>Suyogi Gessner</Para>
+              <Para>Marion Zehe</Para>
+            </Section>
+
+            <Section title="Contact">
+              <Para>Phone: 033203 78408</Para>
               <Para>
-                Email:{' '}
-                <Box
-                  component="a"
-                  href={`mailto:${FOOTER.email}`}
-                  sx={{ color: C.mintDeep, '&:hover': { color: C.mintDeep }, transition: 'color .2s' }}
-                >
-                  {FOOTER.email}
-                </Box>
+                Email: <ExtLink href="mailto:info@yds-germany.de">info@yds-germany.de</ExtLink>
               </Para>
             </Section>
+
+            <Section title="Responsible for the content according to § 18 (2) MStV">
+              <Para>Manfred Gutheins</Para>
+              <Para>Im Tal 16, 14532 Kleinmachnow</Para>
+            </Section>
+
+            <Section title="EU Dispute Resolution">
+              <Para>
+                The European Commission provides a platform for online dispute resolution (ODR):{' '}
+                <ExtLink href="https://ec.europa.eu/consumers/odr/">https://ec.europa.eu/consumers/odr/</ExtLink>
+              </Para>
+              <Para>You can find our e-mail address at the top of the imprint.</Para>
+            </Section>
+
+            <Section title="Consumer Dispute Resolution / Universal Arbitration Board">
+              <Para>
+                We are not willing or obliged to participate in dispute resolution proceedings before a consumer
+                arbitration board.
+              </Para>
+            </Section>
+
+            <Section title="Liability for Content">
+              <Para>
+                As a service provider, we are responsible for our own content on these pages in accordance with
+                general laws pursuant to § 7 (1) TMG. According to §§ 8 to 10 TMG, however, we are not obligated as
+                a service provider to monitor transmitted or stored third-party information or to investigate
+                circumstances that indicate illegal activity.
+              </Para>
+              <Para>
+                Obligations to remove or block the use of information under general law remain unaffected. However,
+                liability in this regard is only possible from the time of knowledge of a specific legal violation.
+                Upon becoming aware of corresponding legal violations, we will remove this content immediately.
+              </Para>
+            </Section>
+
+            <Section title="Liability for Links">
+              <Para>
+                Our website contains links to external third-party websites over whose content we have no
+                influence. Therefore, we cannot accept any liability for this external content. The respective
+                provider or operator of the pages is always responsible for the content of the linked pages. The
+                linked pages were checked for possible legal violations at the time of linking. Illegal content was
+                not recognisable at the time of linking.
+              </Para>
+              <Para>
+                However, permanent monitoring of the content of the linked pages is not reasonable without concrete
+                evidence of a violation of the law. Upon becoming aware of legal violations, we will remove such
+                links immediately.
+              </Para>
+            </Section>
+
+            <Section title="Copyright">
+              <Para>
+                The content and works on these pages created by the site operators are subject to German copyright
+                law. The duplication, processing, distribution and any kind of exploitation outside the limits of
+                copyright law require the written consent of the respective author or creator. Downloads and copies
+                of this site are only permitted for private, non-commercial use.
+              </Para>
+              <Para>
+                Insofar as the content on this site was not created by the operator, the copyrights of third
+                parties are respected. In particular, third-party content is marked as such. Should you
+                nevertheless become aware of a copyright infringement, please inform us accordingly. Upon becoming
+                aware of legal violations, we will remove such content immediately.
+              </Para>
+            </Section>
+
+            <Para>
+              Source:{' '}
+              <ExtLink href="https://www.e-recht24.de/impressum-generator.html">e-recht24.de</ExtLink>
+            </Para>
           </Box>
         </Container>
       </Box>
