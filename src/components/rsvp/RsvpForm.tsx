@@ -82,7 +82,6 @@ export default function RsvpForm({ onClose }: Props) {
     return (
       <RsvpConfirmation
         name={fullName.trim()}
-        partySize={adults + children}
         onClose={onClose}
       />
     )

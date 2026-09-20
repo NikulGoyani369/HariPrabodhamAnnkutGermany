@@ -17,14 +17,12 @@ export function escapeHtml(input: string): string {
 }
 
 export function buildEmail(record: RsvpRecord): { subject: string; text: string; html: string } {
-  const partySize = record.adults + record.children;
   const subject = `Your registration is confirmed — ${EVENT.title}`;
 
   const text = `Jai Swaminarayan ${record.full_name},
 
 Your registration for ${EVENT.kicker} ${EVENT.title} — ${EVENT.tagline} is confirmed.
 
-Party size: ${partySize}
 Date: ${EVENT.dateLabel}
 Venue: ${EVENT.venueName}, ${EVENT.city}
 Organiser: ${EVENT.organiser}
@@ -34,7 +32,6 @@ We look forward to welcoming you.`;
   const html = `<p>Jai Swaminarayan ${escapeHtml(record.full_name)},</p>
 <p>Your registration for <strong>${escapeHtml(EVENT.kicker)} ${escapeHtml(EVENT.title)} — ${escapeHtml(EVENT.tagline)}</strong> is confirmed.</p>
 <ul>
-  <li><strong>Party size:</strong> ${partySize}</li>
   <li><strong>Date:</strong> ${escapeHtml(EVENT.dateLabel)}</li>
   <li><strong>Venue:</strong> ${escapeHtml(EVENT.venueName)}, ${escapeHtml(EVENT.city)}</li>
   <li><strong>Organiser:</strong> ${escapeHtml(EVENT.organiser)}</li>
@@ -95,7 +92,7 @@ export default async function handler(req: Request): Promise<Response> {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        from: "HariPrabodham Annakut <rsvp@thedivinespark.de>",
+        from: "HariPrabodham Annakut Utsav <rsvp@thedivinespark.de>",
         to: record.email,
         subject,
         text,

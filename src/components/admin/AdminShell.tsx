@@ -21,7 +21,7 @@ export default function AdminShell({ children }: { children: ReactNode }) {
       <AppBar position="static" elevation={0} sx={{ background: C.ink }}>
         <Toolbar sx={{ justifyContent: 'space-between', gap: 2 }}>
           <Typography sx={{ fontFamily: '"GC Commune", serif', fontSize: 18, color: C.ivory }}>
-            HariPrabodham Annakut — Admin
+            HariPrabodham Annakut Utsav — Admin
           </Typography>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             {session && (

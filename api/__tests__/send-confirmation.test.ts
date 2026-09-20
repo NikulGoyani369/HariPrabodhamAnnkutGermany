@@ -2,10 +2,10 @@ import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import handler, { buildEmail } from '../send-confirmation'
 
 describe('buildEmail', () => {
-  it('includes the guest name and party size in the plain-text body', () => {
+  it('includes the guest name and no party size in the plain-text body', () => {
     const { text } = buildEmail({ full_name: 'Asha Patel', email: 'asha@example.com', adults: 2, children: 1 })
     expect(text).toContain('Asha Patel')
-    expect(text).toContain('Party size: 3')
+    expect(text).not.toMatch(/party size/i)
   })
 
   it('mentions the event title and registration confirmation in the subject', () => {
@@ -93,7 +93,7 @@ describe('send-confirmation handler', () => {
     const sentBody = JSON.parse(init.body as string)
     const expected = buildEmail(validPayload.record)
     expect(sentBody.to).toBe('asha@example.com')
-    expect(sentBody.from).toBe('HariPrabodham Annakut <rsvp@thedivinespark.de>')
+    expect(sentBody.from).toBe('HariPrabodham Annakut Utsav <rsvp@thedivinespark.de>')
     expect(sentBody.subject).toBe(expected.subject)
     expect(sentBody.text).toBe(expected.text)
     expect(sentBody.html).toBe(expected.html)

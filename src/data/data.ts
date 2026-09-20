@@ -17,7 +17,7 @@ export const EVENT = {
 
 // PLACEHOLDER
 export const ABOUT_ANNAKUT = {
-  heading: 'About Annakut',
+  heading: 'About Annakut Utsav',
   paragraphs: [
     'Annakut - the "mountain of food" - is offered to the Lord on the day after Diwali in gratitude for the year past.',
     'Join the HariPrabodham family for darshan, kirtan, and prasad as we welcome the new year together.',
@@ -68,9 +68,9 @@ export const FAQS = [
   },
   {
     q: 'Can I bring my family?',
-    a: 'Yes — enter the number of adults and children in the registration form.',
+    a: 'Yes - enter the number of adults and children in the registration form.',
   },
-  { q: 'Is there parking?', a: 'On-site parking is available.' },
+  { q: 'Is there parking?', a: 'On-site paid parking is available.' },
 ];
 
 // PLACEHOLDER
@@ -106,9 +106,9 @@ export const VENUE = {
 };
 
 export const FOOTER = {
-  brand: 'HariPrabodham Annakut',
-  legal: `© ${new Date().getFullYear()} HariPrabodham. All rights reserved.`,
-  email: 'annakut@example.org', // PLACEHOLDER
+  brand: 'HariPrabodham Annakut Utsav',
+  legal: `© ${new Date().getFullYear()} Yogi Divine Society e.V. Germany. All rights reserved.`,
+  email: 'info@yds-germany.de',
   closing: 'See Live Share - The divine 🙏',
 };
 

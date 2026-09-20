@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-const BASE_TITLE = 'HariPrabodham Annakut'
+const BASE_TITLE = 'HariPrabodham Annakut Utsav'
 
 export function usePageMeta(title?: string, description?: string) {
   useEffect(() => {

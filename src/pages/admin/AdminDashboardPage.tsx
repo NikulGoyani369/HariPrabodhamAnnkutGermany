@@ -99,7 +99,6 @@ export default function AdminDashboardPage() {
                 <TableCell>City</TableCell>
                 <TableCell align="right">Adults</TableCell>
                 <TableCell align="right">Children</TableCell>
-                <TableCell align="right">Party</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -112,7 +111,6 @@ export default function AdminDashboardPage() {
                   <TableCell>{r.city}</TableCell>
                   <TableCell align="right">{r.adults}</TableCell>
                   <TableCell align="right">{r.children}</TableCell>
-                  <TableCell align="right">{r.party_size}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

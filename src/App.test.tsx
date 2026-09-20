@@ -43,6 +43,6 @@ describe('routing', () => {
     // Wait for the lazy ContactPage chunk to resolve before reading the title.
     // The ContactSection title is the page's single <h1>.
     await screen.findByRole('heading', { name: /^contact$/i, level: 1 })
-    expect(document.title).toBe('Contact · HariPrabodham Annakut')
+    expect(document.title).toBe('Contact · HariPrabodham Annakut Utsav')
   })
 })
