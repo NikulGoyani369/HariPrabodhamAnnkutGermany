@@ -1,9 +1,11 @@
 import { EVENT } from "../src/data/data";
 
-export interface RsvpRecord {
-  full_name: string;
+/** The `registrations` row Supabase sends in the webhook payload. */
+export interface RegistrationRecord {
+  name: string;
   email: string;
-  adults: number;
+  /** Additional adults beyond the registrant. */
+  extra_adults: number;
   children: number;
 }
 
@@ -16,11 +18,12 @@ export function escapeHtml(input: string): string {
     .replace(/'/g, "&#39;");
 }
 
-export function buildEmail(record: RsvpRecord): { subject: string; text: string; html: string } {
-  const partySize = record.adults + record.children;
+export function buildEmail(record: RegistrationRecord): { subject: string; text: string; html: string } {
+  // The registrant is always one adult on top of extra_adults.
+  const partySize = 1 + record.extra_adults + record.children;
   const subject = `Your registration is confirmed — ${EVENT.title}`;
 
-  const text = `Jai Swaminarayan ${record.full_name},
+  const text = `Jai Swaminarayan ${record.name},
 
 Your registration for ${EVENT.kicker} ${EVENT.title} — ${EVENT.tagline} is confirmed.
 
@@ -31,7 +34,7 @@ Organiser: ${EVENT.organiser}
 
 We look forward to welcoming you.`;
 
-  const html = `<p>Jai Swaminarayan ${escapeHtml(record.full_name)},</p>
+  const html = `<p>Jai Swaminarayan ${escapeHtml(record.name)},</p>
 <p>Your registration for <strong>${escapeHtml(EVENT.kicker)} ${escapeHtml(EVENT.title)} — ${escapeHtml(EVENT.tagline)}</strong> is confirmed.</p>
 <ul>
   <li><strong>Party size:</strong> ${partySize}</li>
@@ -60,7 +63,7 @@ export default async function handler(req: Request): Promise<Response> {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  let payload: { type?: string; table?: string; record?: Partial<RsvpRecord> };
+  let payload: { type?: string; table?: string; record?: Partial<RegistrationRecord> };
   try {
     payload = await req.json();
   } catch {
@@ -78,14 +81,19 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   const record = payload.record;
-  if (!record || !record.email || !record.full_name) {
+  if (!record || !record.email || !record.name) {
     return new Response(JSON.stringify({ ok: false, error: "Missing required fields" }), {
       status: 400,
       headers: { "content-type": "application/json" },
     });
   }
 
-  const { subject, text, html } = buildEmail(record as RsvpRecord);
+  const { subject, text, html } = buildEmail({
+    name: record.name,
+    email: record.email,
+    extra_adults: record.extra_adults ?? 0,
+    children: record.children ?? 0,
+  });
 
   try {
     const res = await fetch("https://api.resend.com/emails", {

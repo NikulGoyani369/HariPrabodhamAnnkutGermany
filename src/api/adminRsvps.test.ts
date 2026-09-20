@@ -6,7 +6,7 @@ vi.mock('../lib/supabase', () => ({
   },
 }))
 
-import { fetchRsvpSummary } from './adminRsvps'
+import { fetchRegistrationSummary } from './adminRsvps'
 import { supabase } from '../lib/supabase'
 
 let mockSelect: ReturnType<typeof vi.fn>
@@ -17,27 +17,36 @@ beforeEach(() => {
   vi.mocked(supabase.from).mockReturnValue({ select: mockSelect } as never)
 })
 
-describe('fetchRsvpSummary', () => {
-  it('queries the rsvp_summary view and returns the rows', async () => {
+describe('fetchRegistrationSummary', () => {
+  it('queries the registration_summary view and returns the rows', async () => {
     const rows = [
-      { created_at: '2026-10-24T10:00:00Z', full_name: 'Asha Patel', email: 'asha@example.com', phone: '49 0301234567', city: 'Berlin', adults: 2, children: 1, party_size: 3 },
+      {
+        id: 'reg-1',
+        created_at: '2026-10-24T10:00:00Z',
+        name: 'Asha Patel',
+        email: 'asha@example.com',
+        phone: '49 0301234567',
+        adults: 2,
+        children: 1,
+        party_size: 3,
+      },
     ]
     mockSelect.mockResolvedValue({ data: rows, error: null })
 
-    const result = await fetchRsvpSummary()
+    const result = await fetchRegistrationSummary()
 
-    expect(supabase.from).toHaveBeenCalledWith('rsvp_summary')
+    expect(supabase.from).toHaveBeenCalledWith('registration_summary')
     expect(mockSelect).toHaveBeenCalledWith('*')
     expect(result).toEqual(rows)
   })
 
   it('returns an empty array when data is null', async () => {
     mockSelect.mockResolvedValue({ data: null, error: null })
-    expect(await fetchRsvpSummary()).toEqual([])
+    expect(await fetchRegistrationSummary()).toEqual([])
   })
 
   it('throws when Supabase returns an error', async () => {
     mockSelect.mockResolvedValue({ data: null, error: { message: 'permission denied' } })
-    await expect(fetchRsvpSummary()).rejects.toThrow('permission denied')
+    await expect(fetchRegistrationSummary()).rejects.toThrow('permission denied')
   })
 })

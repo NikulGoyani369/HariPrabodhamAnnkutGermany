@@ -4,9 +4,11 @@ export interface RsvpInput {
   fullName: string
   email: string
   dialCode: string
+  /** Optional — a blank value is stored as null. */
   phone: string
-  city: string
-  adults: number
+  /** Additional adults beyond the registrant (0–3). */
+  extraAdults: number
+  /** Children in the party (0–4). */
   children: number
   consent: boolean
 }
@@ -16,17 +18,16 @@ export async function submitRsvp(input: RsvpInput): Promise<{ id: string }> {
   const dial = input.dialCode.replace(/^\+/, '')
 
   const row = {
-    full_name: input.fullName.trim(),
+    name: input.fullName.trim(),
     email: input.email.trim(),
-    phone: `${dial} ${digits}`,
-    city: input.city.trim(),
-    adults: input.adults,
+    phone: digits ? `${dial} ${digits}` : null,
+    extra_adults: input.extraAdults,
     children: input.children,
     consent: input.consent,
   }
 
   const id = crypto.randomUUID()
-  const { error } = await supabase.from('rsvps').insert({ id, ...row })
+  const { error } = await supabase.from('registrations').insert({ id, ...row })
 
   if (error) throw new Error(error.message)
   return { id }

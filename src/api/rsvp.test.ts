@@ -15,9 +15,8 @@ const base: RsvpInput = {
   email: 'asha@example.com',
   dialCode: '+49',
   phone: '030 123-4567',
-  city: 'Berlin',
-  adults: 2,
-  children: 1,
+  extraAdults: 1,
+  children: 2,
   consent: true,
 }
 
@@ -37,20 +36,24 @@ beforeEach(() => {
 describe('submitRsvp', () => {
   it('maps fields to snake_case and composes the phone string', async () => {
     await submitRsvp(base)
-    expect(supabase.from).toHaveBeenCalledWith('rsvps')
+    expect(supabase.from).toHaveBeenCalledWith('registrations')
     expect(mockInsert).toHaveBeenCalledTimes(1)
     expect(mockInsert).toHaveBeenCalledWith(
       expect.objectContaining({
         id: expect.stringMatching(UUID_RE),
-        full_name: 'Asha Patel',
+        name: 'Asha Patel',
         email: 'asha@example.com',
         phone: '49 0301234567',
-        city: 'Berlin',
-        adults: 2,
-        children: 1,
+        extra_adults: 1,
+        children: 2,
         consent: true,
       }),
     )
+  })
+
+  it('stores a null phone when the field is left blank', async () => {
+    await submitRsvp({ ...base, phone: '   ' })
+    expect(mockInsert).toHaveBeenCalledWith(expect.objectContaining({ phone: null }))
   })
 
   it('returns a non-empty id (UUID shape) without asking Supabase for the row back', async () => {

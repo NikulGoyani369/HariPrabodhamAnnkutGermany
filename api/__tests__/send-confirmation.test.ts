@@ -3,18 +3,18 @@ import handler, { buildEmail } from '../send-confirmation'
 
 describe('buildEmail', () => {
   it('includes the guest name and party size in the plain-text body', () => {
-    const { text } = buildEmail({ full_name: 'Asha Patel', email: 'asha@example.com', adults: 2, children: 1 })
+    const { text } = buildEmail({ name: 'Asha Patel', email: 'asha@example.com', extra_adults: 1, children: 1 })
     expect(text).toContain('Asha Patel')
     expect(text).toContain('Party size: 3')
   })
 
   it('mentions the event title and registration confirmation in the subject', () => {
-    const { subject } = buildEmail({ full_name: 'Asha Patel', email: 'asha@example.com', adults: 1, children: 0 })
+    const { subject } = buildEmail({ name: 'Asha Patel', email: 'asha@example.com', extra_adults: 0, children: 0 })
     expect(subject).toMatch(/registration is confirmed/i)
   })
 
   it('escapes HTML in the guest name so it cannot inject markup into the email body', () => {
-    const { html } = buildEmail({ full_name: '<script>alert(1)</script>', email: 'x@example.com', adults: 1, children: 0 })
+    const { html } = buildEmail({ name: '<script>alert(1)</script>', email: 'x@example.com', extra_adults: 0, children: 0 })
     expect(html).not.toContain('<script>')
     expect(html).toContain('&lt;script&gt;')
   })
@@ -32,8 +32,8 @@ function makeRequest(body: unknown, headers: Record<string, string> = {}, method
 
 const validPayload = {
   type: 'INSERT',
-  table: 'rsvps',
-  record: { full_name: 'Asha Patel', email: 'asha@example.com', adults: 2, children: 1 },
+  table: 'registrations',
+  record: { name: 'Asha Patel', email: 'asha@example.com', extra_adults: 1, children: 1 },
 }
 
 describe('send-confirmation handler', () => {
@@ -74,7 +74,7 @@ describe('send-confirmation handler', () => {
   })
 
   it('rejects a payload missing required fields with 400', async () => {
-    const badPayload = { type: 'INSERT', table: 'rsvps', record: { adults: 1, children: 0 } }
+    const badPayload = { type: 'INSERT', table: 'registrations', record: { email: 'asha@example.com' } }
     const res = await handler(makeRequest(badPayload, { 'x-webhook-secret': SECRET }))
     expect(res.status).toBe(400)
     expect(fetch).not.toHaveBeenCalled()
@@ -136,5 +136,27 @@ describe('send-confirmation handler', () => {
     const res = await handler(makeRequest(deletePayload, { 'x-webhook-secret': SECRET }))
     expect(res.status).toBe(200)
     expect(fetch).not.toHaveBeenCalled()
+  })
+
+  it('defaults missing counts to a party of one', async () => {
+    vi.mocked(fetch).mockResolvedValue(new Response(JSON.stringify({ id: 'email-1' }), { status: 200 }))
+    const payload = { type: 'INSERT', table: 'registrations', record: { name: 'Asha Patel', email: 'asha@example.com' } }
+    const res = await handler(makeRequest(payload, { 'x-webhook-secret': SECRET }))
+    expect(res.status).toBe(200)
+    const sentBody = JSON.parse((vi.mocked(fetch).mock.calls[0][1] as RequestInit).body as string)
+    expect(sentBody.text).toContain('Party size: 1')
+  })
+
+  it('counts the registrant on top of the stored extra adults and children', async () => {
+    vi.mocked(fetch).mockResolvedValue(new Response(JSON.stringify({ id: 'email-1' }), { status: 200 }))
+    const payload = {
+      type: 'INSERT',
+      table: 'registrations',
+      record: { name: 'Asha Patel', email: 'asha@example.com', extra_adults: 3, children: 4 },
+    }
+    const res = await handler(makeRequest(payload, { 'x-webhook-secret': SECRET }))
+    expect(res.status).toBe(200)
+    const sentBody = JSON.parse((vi.mocked(fetch).mock.calls[0][1] as RequestInit).body as string)
+    expect(sentBody.text).toContain('Party size: 8')
   })
 })

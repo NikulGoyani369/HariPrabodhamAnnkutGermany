@@ -22,9 +22,15 @@ export default function RsvpModal() {
   // trip react-hooks/set-state-in-effect); see brief deviation note.
   const [open, setOpen] = useState(true)
   const [wasOpen, setWasOpen] = useState(false)
+  // Once submitted, the confirmation panel supplies its own heading, so the
+  // dialog header collapses to just the close button.
+  const [submitted, setSubmitted] = useState(false)
   if (modalOpen !== wasOpen) {
     setWasOpen(modalOpen)
-    if (modalOpen) setOpen(isRegistrationOpenNow())
+    if (modalOpen) {
+      setOpen(isRegistrationOpenNow())
+      setSubmitted(false)
+    }
   }
 
   return (
@@ -35,7 +41,7 @@ export default function RsvpModal() {
       fullWidth
       fullScreen={isMobile}
       scroll="paper"
-      aria-labelledby="rsvp-dialog-title"
+      aria-labelledby={submitted ? "rsvp-confirmation-title" : "rsvp-dialog-title"}
       slotProps={{
         paper: {
           sx: {
@@ -57,7 +63,7 @@ export default function RsvpModal() {
         },
       }}
     >
-      <DialogTitle sx={{ textAlign: 'center', pt: { xs: 3.5, md: 4 }, px: { xs: 2, md: 4 }, pb: 0, position: 'relative' }}>
+      <DialogTitle id="rsvp-dialog-header" sx={{ textAlign: 'center', pt: { xs: 3.5, md: 4 }, px: { xs: 2, md: 4 }, pb: 0, position: 'relative' }}>
         <IconButton
           onClick={closeModal}
           size="small"
@@ -66,26 +72,34 @@ export default function RsvpModal() {
         >
           <CloseIcon fontSize="small" />
         </IconButton>
-        <Typography
-          component="span"
-          sx={{
-            display: 'block', fontSize: '0.68rem', letterSpacing: '0.18em',
-            textTransform: 'uppercase', color: C.gold, fontWeight: 600, mb: 1,
-          }}
-        >
-          {open ? 'Reserve your place' : 'Registration'}
-        </Typography>
-        <Typography id="rsvp-dialog-title" variant="h2" component="p" sx={{ fontFamily: '"GC Commune", serif', fontSize: { xs: '1.6rem', md: '2rem' }, lineHeight: 1.2 }}>
-          Registration
-        </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.25, mt: 2, mb: 1 }}>
-          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)` }} />
-          <Box component="span" sx={{ color: C.goldLight, fontSize: 12 }}>✦</Box>
-          <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)` }} />
-        </Box>
+        {!submitted && (
+          <>
+            <Typography
+              component="span"
+              sx={{
+                display: 'block', fontSize: '0.68rem', letterSpacing: '0.18em',
+                textTransform: 'uppercase', color: C.gold, fontWeight: 600, mb: 1,
+              }}
+            >
+              {open ? 'Reserve your place' : 'Registration'}
+            </Typography>
+            <Typography id="rsvp-dialog-title" variant="h2" component="p" sx={{ fontFamily: '"GC Commune", serif', fontSize: { xs: '1.6rem', md: '2rem' }, lineHeight: 1.2 }}>
+              Registration
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.25, mt: 2, mb: 1 }}>
+              <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to right, transparent, ${C.goldLight}, transparent)` }} />
+              <Box component="span" sx={{ color: C.goldLight, fontSize: 12 }}>✦</Box>
+              <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)` }} />
+            </Box>
+          </>
+        )}
       </DialogTitle>
       <DialogContent sx={{ px: { xs: 2, md: 4 }, pb: 4, pt: 2 }}>
-        {open ? <RsvpForm onClose={closeModal} /> : <RegistrationClosed onClose={closeModal} />}
+        {open ? (
+          <RsvpForm onClose={closeModal} onSubmitted={() => setSubmitted(true)} />
+        ) : (
+          <RegistrationClosed onClose={closeModal} />
+        )}
       </DialogContent>
     </Dialog>
   )
