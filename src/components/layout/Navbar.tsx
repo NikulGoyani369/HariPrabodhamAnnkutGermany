@@ -72,7 +72,7 @@ export default function Navbar() {
             sx={s.brandMark}
           />
           <Typography sx={{ ...s.brandText, color: C.saffronDeep }}>
-            Annkut Utsav
+            Annakut Utsav
             <Typography
               component="small"
               sx={{ ...s.brandSub, color: C.saffronDeep }}
