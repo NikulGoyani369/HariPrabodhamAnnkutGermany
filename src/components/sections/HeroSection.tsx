@@ -5,7 +5,7 @@ import { EVENT } from '../../data/data'
 import { useRsvpStore } from '../../store/rsvpStore'
 import { useRegistrationOpen } from '../../hooks/useRegistrationOpen'
 import { useCountdown } from '../../hooks/useCountdown'
-import { C } from '../../theme/theme'
+import { C, registerCtaSx } from '../../theme/theme'
 import { heroStyles as s } from './HeroSection.styles'
 
 export default function HeroSection() {
@@ -24,11 +24,8 @@ export default function HeroSection() {
 
   return (
     <Box component="section" id="hero" sx={s.outerBox}>
-      <Box aria-hidden="true" sx={s.photoBand}>
-        <Box aria-hidden="true" sx={s.photoBandFade} />
-      </Box>
-
-      <Container maxWidth="md" sx={{ textAlign: 'center' }}>
+      <Box sx={s.poster}>
+      <Container maxWidth="md" sx={s.content}>
         <Typography component="h1" sx={{ m: 0 }}>
           <Box
             component="img"
@@ -52,7 +49,12 @@ export default function HeroSection() {
             sx={s.ctaRow}
             justifyContent="center"
           >
-            <Button variant="contained" size="large" onClick={openModal}>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={openModal}
+              sx={registerCtaSx}
+            >
               Register Now
             </Button>
             <Button
@@ -93,6 +95,7 @@ export default function HeroSection() {
           ))}
         </Box>
       </Container>
+      </Box>
     </Box>
   );
 }

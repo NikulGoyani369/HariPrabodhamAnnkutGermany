@@ -1,5 +1,5 @@
 import type { SxProps, Theme } from '@mui/material'
-import { C } from '../../theme/theme'
+import { C, CORAL, registerCtaSx } from '../../theme/theme'
 
 export const navbarStyles: Record<string, SxProps<Theme>> = {
   appBar: {
@@ -13,7 +13,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     maxWidth: 1570,
     width: '100%',
     mx: 'auto',
-    px: { xs: 2, sm: 3 },
+    px: { xs: 2.5, sm: 4, md: 6, lg: 10, xl: 16 },
     py: '5px',
     justifyContent: 'space-between',
     minHeight: { xs: 64, md: 72 },
@@ -21,7 +21,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
   brandBox: {
     display: 'flex',
     alignItems: 'center',
-    gap: 1.5,
+    gap: { xs: 1.5, md: 2 },
     cursor: 'pointer',
     textDecoration: 'none',
     minWidth: 0,
@@ -55,8 +55,8 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     gap: { md: 0.5, lg: 1 },
     alignItems: 'center',
   },
-  // Nav links: ink-soft by default; active link gets saffron text + a
-  // permanent saffron underline (the same underline previews on hover).
+  // Nav links: ink-soft by default; active link gets coral text + a
+  // permanent coral underline (text and underline preview on hover).
   navButton: {
     fontSize: 16,
     fontWeight: 500,
@@ -73,21 +73,21 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
       right: 12,
       bottom: 4,
       height: '1px',
-      background: C.saffron,
+      background: CORAL,
       transform: 'scaleX(0)',
       transformOrigin: 'left',
       transition: 'transform .25s ease',
     },
     '&:hover::after': { transform: 'scaleX(1)' },
-    '&:hover': { bgcolor: 'transparent', color: C.ink },
+    '&:hover': { bgcolor: 'transparent', color: CORAL },
   },
   registerButton: {
     ml: 1.5,
     fontWeight: 600,
-    boxShadow: `0 4px 14px rgba(233,138,60,0.28)`,
+    ...registerCtaSx,
     '&:hover': {
+      ...registerCtaSx['&:hover'],
       transform: 'translateY(-1px)',
-      boxShadow: `0 8px 22px rgba(233,138,60,0.36)`,
     },
   },
   drawerBox: {
@@ -102,7 +102,7 @@ export const navbarStyles: Record<string, SxProps<Theme>> = {
     fontSize: 16,
     fontWeight: 500,
     color: C.ink,
-    '&:hover': { background: C.cream },
+    '&:hover': { background: CORAL, color: '#ffffff' },
   },
   iconColor: {
     color: C.ink,

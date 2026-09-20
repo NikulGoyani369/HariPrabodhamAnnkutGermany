@@ -21,12 +21,12 @@ export const C = {
 
   // Accents
   saffron:     '#E98A3C', // primary CTA / highlights
-  saffronDeep: '#D97A2B', // hover state
+  saffronDeep: '#fe998b ', // hover state
   gold:        '#C9A25A', // dividers, thin borders, small-caps labels
   goldLight:   '#E3C489',
 
   // Text
-  ink:      '#4A3728', // headings and body
+  ink:      '#7a6450', // headings and body
   inkSoft:  '#7A6450', // secondary text
   inkMuted: '#9C8974', // captions, labels
 }
@@ -108,3 +108,16 @@ export default theme
 
 export const PRIMARY   = C.saffron
 export const SECONDARY = C.mintDeep
+
+// "Register Now" CTA: flat coral. Sets `background` (not bgcolor) so it
+// replaces the saffron gradient that containedPrimary paints.
+export const CORAL = '#fe998b'
+
+export const registerCtaSx = {
+  background: CORAL,
+  boxShadow: '0 4px 14px rgba(254,153,139,0.35)',
+  '&:hover': {
+    background: '#f98a7b',
+    boxShadow: '0 8px 22px rgba(254,153,139,0.45)',
+  },
+}

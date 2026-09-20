@@ -8,29 +8,38 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     pb: { xs: '56px', md: '80px' },
   },
 
-  // The stage photo from the event poster — a clean, unobstructed band up
-  // top (nothing overlaps the murtis), fading into the page background.
-  photoBand: {
+  // The full event poster (2000x1549, ratio 1.29) is the hero background,
+  // shown uncropped at its natural width. Its lower ~28% is a blank cream
+  // arc built for text, so the content starts there (--w = image width,
+  // capped at 1920px) and simply flows on below the image, which fades into
+  // the page background.
+  poster: {
+    '--w': 'min(100vw, 1920px)',
     position: 'relative',
-    height: { xs: 260, sm: 380, md: 750 },
-    backgroundImage: 'url(/images/hero-stage.jpg)',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center 40%',
+    maxWidth: 1920,
+    mx: 'auto',
+    pt: 'calc(var(--w) * 0.56)',
+    backgroundImage:
+      'url("/images/Annkut%20bg%20image%20for%20website%20-%20web.jpg.jpeg")',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% auto',
+    backgroundPosition: 'top center',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      left: 0,
+      right: 0,
+      top: 'calc(var(--w) * 0.62)',
+      height: 'calc(var(--w) * 0.155)',
+      background: `linear-gradient(180deg, transparent, ${C.ivory})`,
+      pointerEvents: 'none',
+    },
   },
 
-  photoBandFade: {
-    position: 'absolute',
-    inset: 0,
-    background: `linear-gradient(180deg, transparent 55%, ${C.ivory} 100%)`,
-  },
-
-  overline: {
-    mt: { xs: 3.5, md: 5 },
-    fontSize: { xs: '0.7rem', md: '0.78rem' },
-    letterSpacing: '0.22em',
-    textTransform: 'uppercase' as const,
-    fontWeight: 600,
-    color: C.mintDeep,
+  content: {
+    position: 'relative',
+    zIndex: 1,
+    textAlign: 'center',
   },
 
   // The title is now the poster's lockup image (see HeroSection.tsx) — this
@@ -48,7 +57,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     mt: { xs: 1.5, md: 2 },
     fontFamily: '"GC Commune", serif',
     fontWeight: 600,
-    fontSize: { xs: '2.05rem', md: '2.3rem' },
+    fontSize: { xs: '2.05rem', md: '1.3rem' },
     letterSpacing: '0.02em',
     color: '#DE7B8E',
   },

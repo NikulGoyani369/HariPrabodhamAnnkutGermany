@@ -16,7 +16,7 @@ export default function AboutAnnakutSection() {
     <Box
       component="section"
       id="about"
-      sx={{ background: C.ivory, py: { xs: 6, md: 8 } }}
+      sx={{ background: C.ivory, pt: 0, pb: { xs: 6, md: 8 } }}
     >
       <Container maxWidth="md" sx={{ textAlign: 'center' }}>
         <Typography

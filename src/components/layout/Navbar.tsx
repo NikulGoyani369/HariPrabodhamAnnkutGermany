@@ -19,7 +19,7 @@ import type { SxProps, Theme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NAV_LINKS } from '../../data/data';
 import { navbarStyles as s } from './Navbar.styles';
-import { C } from '../../theme/theme';
+import { C, CORAL, registerCtaSx } from '../../theme/theme';
 import { useRsvpStore } from '../../store/rsvpStore';
 import { useRegistrationOpen } from '../../hooks/useRegistrationOpen';
 
@@ -71,13 +71,13 @@ export default function Navbar() {
             aria-hidden="true"
             sx={s.brandMark}
           />
-          <Typography sx={s.brandText}>
-            HariPrabodham
+          <Typography sx={{ ...s.brandText, color: C.saffronDeep }}>
+            Annkut Utsav
             <Typography
               component="small"
               sx={{ ...s.brandSub, color: C.saffronDeep }}
             >
-              Annakut
+              HariPrabodham
             </Typography>
           </Typography>
         </Box>
@@ -107,7 +107,7 @@ export default function Navbar() {
                           [
                             s.drawerLink,
                             isActive(link.href) && {
-                              background: C.saffron,
+                              background: CORAL,
                               color: '#ffffff',
                             },
                           ] as SxProps<Theme>
@@ -121,6 +121,7 @@ export default function Navbar() {
                     <Button
                       variant="contained"
                       fullWidth
+                      sx={registerCtaSx}
                       onClick={() => {
                         if (registrationOpen) {
                           openModal();
@@ -149,7 +150,7 @@ export default function Navbar() {
                   [
                     s.navButton,
                     isActive(link.href) && {
-                      color: C.saffron,
+                      color: CORAL,
                       '&::after': { transform: 'scaleX(1)' },
                     },
                   ] as SxProps<Theme>

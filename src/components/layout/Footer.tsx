@@ -13,26 +13,26 @@ export default function Footer() {
       sx={{
         background: `linear-gradient(180deg, color-mix(in srgb, ${C.lilacDeep} 55%, ${C.ink}), ${C.ink})`,
         color: `${C.ivory}E6`,
-        pt: { xs: 5, md: 6 },
-        pb: { xs: 3, md: 3.5 },
+        pt: { xs: 2, md: 2 },
+        pb: { xs: 1.5, md: 1.5 },
       }}
     >
       <Container maxWidth="lg">
         {/* Tagline */}
-        <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 5 } }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 1, md: 1 } }}>
           <Box
             component="img"
             src="/images/lotus-mark.png"
             alt=""
             aria-hidden="true"
-            sx={{ width: 36, height: 'auto', mx: 'auto', mb: 1.5, display: 'block' }}
+            sx={{ width: 22, height: 'auto', mx: 'auto', mb: 0.5, display: 'block' }}
           />
           <Typography
             sx={{
               fontFamily: '"GC Commune", serif',
-              fontSize: { xs: '1.25rem', md: 'clamp(1.25rem, 2.4vw, 1.75rem)' },
+              fontSize: { xs: '1.05rem', md: '1.25rem' },
               color: C.ivory,
-              lineHeight: 1.4,
+              lineHeight: 1.3,
             }}
           >
             {EVENT.tagline}
@@ -40,7 +40,7 @@ export default function Footer() {
           <Typography
             sx={{
               display: 'block',
-              mt: 1,
+              mt: 0.25,
               fontFamily: '"GC Commune", serif',
               fontSize: { xs: '0.7rem', md: '0.75rem' },
               letterSpacing: '0.18em',
@@ -53,17 +53,17 @@ export default function Footer() {
           </Typography>
         </Box>
 
-        <SectionDivider sx={{ mt: { xs: 4, md: 5 }, opacity: 0.9 }} />
+        <SectionDivider sx={{ mt: { xs: 1, md: 1 }, opacity: 0.9 }} />
 
         {/* Bottom bar */}
         <Box
           sx={{
-            pt: { xs: 2.5, md: 3 },
+            pt: { xs: 1, md: 1 },
             display: 'flex',
             flexDirection: { xs: 'column', sm: 'row' },
             justifyContent: { xs: 'center', sm: 'space-between' },
             alignItems: 'center',
-            gap: { xs: 1.5, sm: 2 },
+            gap: { xs: 0.5, sm: 2 },
             fontSize: 13,
             color: `${C.ivory}99`,
             textAlign: { xs: 'center', sm: 'left' },

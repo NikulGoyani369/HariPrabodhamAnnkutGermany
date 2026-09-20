@@ -52,13 +52,13 @@ body {
   background: linear-gradient(180deg, var(--ivory) 0%, #F7E6EA 50%, #EFE9E0 100%);
 }
 
-.MuiAppBar-root.scrolled {
+/* .MuiAppBar-root.scrolled {
   background-color: rgba(251, 244, 233, 0.9) !important;
   backdrop-filter: saturate(140%) blur(12px) !important;
   -webkit-backdrop-filter: saturate(140%) blur(12px) !important;
   border-bottom-color: var(--gold-light) !important;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset !important;
-}
+} */
 
 @keyframes slideIn {
   from { opacity: 0; transform: translateX(24px); }
