@@ -84,7 +84,9 @@ export default function RsvpModal() {
           <Box sx={{ height: '1px', width: 36, background: `linear-gradient(to left, transparent, ${C.goldLight}, transparent)` }} />
         </Box>
       </DialogTitle>
-      <DialogContent sx={{ px: { xs: 2, md: 4 }, pb: 4, pt: 2 }}>
+      {/* '&&' beats MUI's `.MuiDialogTitle-root + .MuiDialogContent-root { padding-top: 0 }`;
+          without top padding the first field's floating label is clipped by this scroll container. */}
+      <DialogContent sx={{ px: { xs: 2, md: 4 }, pb: 4, '&&': { pt: 2 } }}>
         {open ? <RsvpForm onClose={closeModal} /> : <RegistrationClosed onClose={closeModal} />}
       </DialogContent>
     </Dialog>
