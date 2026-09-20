@@ -20,7 +20,7 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     mx: 'auto',
     pt: 'calc(var(--w) * 0.56)',
     backgroundImage:
-      'url("/images/Annkut%20bg%20image%20for%20website%20-%20web.jpg.jpeg")',
+      'url(/images/hero-poster.jpg)',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% auto',
     backgroundPosition: 'top center',
