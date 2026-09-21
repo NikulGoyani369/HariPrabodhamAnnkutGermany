@@ -157,6 +157,56 @@ export default function DataPrivacyPage() {
               </Para>
             </Section>
 
+            <Section title="Event Registration">
+              <Para>
+                If you register for the event, we collect and store the following data that you enter in the
+                registration form:
+              </Para>
+              <BulletList
+                items={[
+                  'Full name',
+                  'Email address',
+                  'Phone number (including country dial code)',
+                  'City / Mandal',
+                  'Number of adults and children attending',
+                  'Your consent, and the date and time of your registration',
+                ]}
+              />
+              <Para>
+                Purpose: we use this data solely to organise the event, for example to plan seating and prasad, to
+                contact you about your registration, and to send you a confirmation email. Providing the data is
+                voluntary, but without it we cannot process your registration.
+              </Para>
+              <Para>
+                Legal basis: Art. 6 (1) (a) GDPR — your consent, which you give by ticking the consent box in the
+                registration form. You can revoke your consent at any time with effect for the future by contacting
+                us using the details below.
+              </Para>
+              <Para>
+                Access and recipients: your registration data can only be viewed by the event organisers we
+                authorise, using password-protected accounts. We do not sell your data or pass it on to third
+                parties for their own purposes. We use the following service providers, who process data on our
+                behalf:
+              </Para>
+              <BulletList
+                items={[
+                  'Supabase — database in which registrations are stored',
+                  'Resend — sending of the confirmation email (your name and email address are transmitted to it)',
+                  'Vercel — hosting of this website and of the function that triggers the confirmation email',
+                ]}
+              />
+              <Para>
+                Some of these providers may process data outside the EU/EEA, in particular in the USA. Where this
+                is the case, the transfer is protected by appropriate safeguards such as the EU Standard
+                Contractual Clauses.
+              </Para>
+              <Para>
+                Storage period: we store your registration data until the event has taken place and its
+                organisation is complete, and then delete it, unless statutory retention obligations require us to
+                keep it longer.
+              </Para>
+            </Section>
+
             <Section title="Newsletter">
               <Para>
                 Your data will be used exclusively to send you the newsletter you have subscribed to via email. For
