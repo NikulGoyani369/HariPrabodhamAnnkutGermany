@@ -174,7 +174,7 @@ export default function RsvpForm({ onClose, onSubmitted }: Props) {
             ))}
           </TextField>
           <TextField
-            label="Phone (optional)"
+            label="Phone number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             error={!!errors.phone}
