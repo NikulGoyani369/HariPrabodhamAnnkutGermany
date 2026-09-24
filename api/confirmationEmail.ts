@@ -72,6 +72,19 @@ ${commune}
 </style>`;
 }
 
+/**
+ * The event lockup. Uses the artwork when an absolute base URL is available,
+ * falling back to type when it is not — and the alt text carries the same
+ * words for clients that block remote images by default.
+ */
+function titleBlock(base: string | null): string {
+  if (base) {
+    return `<img src="${base}/images/email-title.png" width="340" alt="${escapeHtml(EVENT.title)} Utsav — ${escapeHtml(EVENT.tagline)}" style="display:block;margin:0 auto;border:0;outline:none;width:340px;max-width:88%;height:auto;" />`;
+  }
+  return `<div style="font:400 34px/1.15 ${FONT_DISPLAY};color:${INK};padding-top:6px;">${escapeHtml(EVENT.title)} ${EVENT_YEAR}</div>
+    <div style="font:400 15px/1.5 ${FONT_SERIF};color:${INK_SOFT};padding-top:6px;">${escapeHtml(EVENT.tagline)}</div>`;
+}
+
 function partySizeOf(record: RegistrationRecord): number {
   // The registrant is always one adult on top of extra_adults.
   return 1 + record.extra_adults + record.children;
@@ -139,9 +152,8 @@ ${fontFaces(base)}
   <!-- Header -->
   <tr><td align="center" style="padding:36px 32px 8px;">
     ${mark}
-    <div style="font:600 11px/1.4 ${FONT_SANS};letter-spacing:.18em;text-transform:uppercase;color:${GOLD};">${escapeHtml(EVENT.kicker)}</div>
-    <div style="font:400 34px/1.15 ${FONT_DISPLAY};color:${INK};padding-top:6px;">${escapeHtml(EVENT.title)} ${EVENT_YEAR}</div>
-    <div style="font:400 15px/1.5 ${FONT_SERIF};color:${INK_SOFT};padding-top:6px;">${escapeHtml(EVENT.tagline)}</div>
+    <div style="font:600 11px/1.4 ${FONT_SANS};letter-spacing:.18em;text-transform:uppercase;color:${GOLD};padding-bottom:14px;">${escapeHtml(EVENT.kicker)}</div>
+    ${titleBlock(base)}
     <div style="font:600 11px/1.6 ${FONT_SANS};letter-spacing:.14em;text-transform:uppercase;color:${GOLD};padding-top:10px;">${escapeHtml(EVENT.highlight)}</div>
   </td></tr>
 
