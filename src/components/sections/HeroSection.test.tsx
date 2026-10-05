@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import HeroSection from './HeroSection'
+import { REGISTER_URL } from '../../data/data'
 import { useRsvpStore } from '../../store/rsvpStore'
 
 const regOpen = vi.fn()
@@ -22,12 +22,10 @@ describe('HeroSection', () => {
     expect(screen.getByRole('heading', { level: 1, name: /the divine spark/i })).toBeInTheDocument()
   })
 
-  it('opens the modal from "Register Now" when registration is open', async () => {
+  it('links "Register Now" to the external registration page when registration is open', () => {
     regOpen.mockReturnValue(true)
-    const user = userEvent.setup()
     renderHero()
-    await user.click(screen.getByRole('button', { name: /register now/i }))
-    expect(useRsvpStore.getState().modalOpen).toBe(true)
+    expect(screen.getByRole('link', { name: /register now/i })).toHaveAttribute('href', REGISTER_URL)
   })
 
   it('hides the CTA and shows a learn-more link when closed', () => {

@@ -17,10 +17,9 @@ import {
 } from '@mui/material';
 import type { SxProps, Theme } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NAV_LINKS } from '../../data/data';
+import { NAV_LINKS, REGISTER_URL } from '../../data/data';
 import { navbarStyles as s } from './Navbar.styles';
 import { C, CORAL, registerCtaSx } from '../../theme/theme';
-import { useRsvpStore } from '../../store/rsvpStore';
 import { useRegistrationOpen } from '../../hooks/useRegistrationOpen';
 
 export default function Navbar() {
@@ -30,7 +29,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const openModal = useRsvpStore((s) => s.openModal);
   const registrationOpen = useRegistrationOpen();
 
   useEffect(() => {
@@ -124,7 +122,7 @@ export default function Navbar() {
                       sx={registerCtaSx}
                       onClick={() => {
                         if (registrationOpen) {
-                          openModal();
+                          window.location.href = REGISTER_URL;
                         } else {
                           navigate('/venue');
                         }
@@ -163,7 +161,9 @@ export default function Navbar() {
             <Button
               variant="contained"
               size="large"
-              onClick={registrationOpen ? openModal : () => navigate('/venue')}
+              {...(registrationOpen
+                ? { href: REGISTER_URL }
+                : { onClick: () => navigate('/venue') })}
               sx={{
                 ...s.registerButton,
                 fontFamily: '"GC Commune", serif',

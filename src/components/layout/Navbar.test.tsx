@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom'
 import Navbar from './Navbar'
+import { REGISTER_URL } from '../../data/data'
 import { useRsvpStore } from '../../store/rsvpStore'
 
 const regOpen = vi.fn()
@@ -16,12 +16,10 @@ beforeEach(() => {
 })
 
 describe('Navbar', () => {
-  it('opens the RSVP modal from the CTA when registration is open', async () => {
+  it('links to the external registration page from the CTA when registration is open', () => {
     regOpen.mockReturnValue(true)
-    const user = userEvent.setup()
     renderNav()
-    await user.click(screen.getByRole('button', { name: /register now/i }))
-    expect(useRsvpStore.getState().modalOpen).toBe(true)
+    expect(screen.getByRole('link', { name: /register now/i })).toHaveAttribute('href', REGISTER_URL)
   })
 
   it('shows "Learn More" instead when registration is closed', () => {

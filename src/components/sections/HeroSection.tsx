@@ -1,8 +1,7 @@
 import { useNavigate, Link as RouterLink } from 'react-router-dom'
 import { Box, Container, Typography, Button, Stack, Link } from '@mui/material'
 import type { SxProps, Theme } from '@mui/material'
-import { EVENT } from '../../data/data'
-import { useRsvpStore } from '../../store/rsvpStore'
+import { EVENT, REGISTER_URL } from '../../data/data'
 import { useRegistrationOpen } from '../../hooks/useRegistrationOpen'
 import { useCountdown } from '../../hooks/useCountdown'
 import { C, registerCtaSx } from '../../theme/theme'
@@ -10,7 +9,6 @@ import { heroStyles as s } from './HeroSection.styles'
 
 export default function HeroSection() {
   const navigate = useNavigate()
-  const openModal = useRsvpStore((st) => st.openModal)
   const registrationOpen = useRegistrationOpen()
   const { d, h, m, s: sec } = useCountdown(EVENT.dateISO)
 
@@ -52,7 +50,7 @@ export default function HeroSection() {
             <Button
               variant="contained"
               size="large"
-              onClick={openModal}
+              href={REGISTER_URL}
               sx={registerCtaSx}
             >
               Register Now

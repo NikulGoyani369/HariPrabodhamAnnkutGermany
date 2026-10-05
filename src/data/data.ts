@@ -15,6 +15,10 @@ export const EVENT = {
   organiser: 'HariPrabodham Germany',
 };
 
+// "Register Now" sends visitors to the external YDS registration page.
+export const REGISTER_URL =
+  'https://yds-germany.de/event/annakoot-2026-the-divine-spark/';
+
 // PLACEHOLDER
 export const ABOUT_ANNAKUT = {
   heading: 'About Annakut Utsav',
