@@ -12,7 +12,7 @@ import {
   Alert,
   Button,
 } from '@mui/material'
-import { fetchRsvpSummary, type RsvpSummaryRow } from '../../api/adminRsvps'
+import { fetchRegistrationSummary, type RegistrationSummaryRow } from '../../api/adminRsvps'
 import { usePageMeta } from '../../hooks/usePageMeta'
 import { C } from '../../theme/theme'
 
@@ -20,13 +20,13 @@ type Status = 'loading' | 'error' | 'ready'
 
 export default function AdminDashboardPage() {
   usePageMeta('Admin Dashboard')
-  const [rows, setRows] = useState<RsvpSummaryRow[]>([])
+  const [rows, setRows] = useState<RegistrationSummaryRow[]>([])
   const [status, setStatus] = useState<Status>('loading')
 
   // Initial state is already 'loading', so the mount fetch below never needs
   // to set it synchronously — only its async .then/.catch update state.
   const runFetch = () => {
-    fetchRsvpSummary()
+    fetchRegistrationSummary()
       .then((data) => {
         setRows(data)
         setStatus('ready')
@@ -96,21 +96,21 @@ export default function AdminDashboardPage() {
                 <TableCell>Name</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Phone</TableCell>
-                <TableCell>City</TableCell>
                 <TableCell align="right">Adults</TableCell>
                 <TableCell align="right">Children</TableCell>
+                <TableCell align="right">Party</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {rows.map((r) => (
-                <TableRow key={`${r.email}-${r.created_at}`}>
+                <TableRow key={r.id}>
                   <TableCell>{new Date(r.created_at).toLocaleString()}</TableCell>
-                  <TableCell>{r.full_name}</TableCell>
+                  <TableCell>{r.name}</TableCell>
                   <TableCell>{r.email}</TableCell>
-                  <TableCell>{r.phone}</TableCell>
-                  <TableCell>{r.city}</TableCell>
+                  <TableCell>{r.phone ?? '—'}</TableCell>
                   <TableCell align="right">{r.adults}</TableCell>
                   <TableCell align="right">{r.children}</TableCell>
+                  <TableCell align="right">{r.party_size}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

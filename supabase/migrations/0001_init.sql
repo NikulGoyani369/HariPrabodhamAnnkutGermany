@@ -1,38 +1,69 @@
--- rsvps ---------------------------------------------------------------
-create table public.rsvps (
+-- Full schema for the HariPrabodham Annakut registration site.
+-- This is the single source of truth: running it replaces any earlier schema.
+--
+-- DESTRUCTIVE: the drops below remove any existing registration tables and
+-- every row in them. Export your data before running this on a live project.
+--
+-- Head counts are stored as counts, not as one row per attendee: the event
+-- needs catering and capacity numbers, not the names of family members who
+-- never saw the privacy notice themselves.
+
+drop view     if exists public.registration_summary;
+drop view     if exists public.rsvp_summary;
+drop function if exists public.create_registration(text, text, text, boolean, jsonb);
+drop table    if exists public.members       cascade;
+drop table    if exists public.registrations cascade;
+drop table    if exists public.rsvps         cascade;
+
+-- registrations -------------------------------------------------------
+-- One row per household that signs up.
+--
+-- The two count columns hold exactly what the form's "Additional members"
+-- dropdowns hold, so both start at 0. The registrant is always one adult on
+-- top of extra_adults; registration_summary below derives the real totals.
+create table public.registrations (
   id           uuid primary key default gen_random_uuid(),
-  created_at   timestamptz not null default now(),
-  full_name    text not null,
+  name         text not null,
   email        text not null,
-  phone        text not null,
-  city         text not null,
-  adults       int  not null check (adults  >= 1  and adults  <= 10),
-  children     int  not null default 0 check (children >= 0 and children <= 10),
-  darshan_slot text not null,
-  notes        text,
-  consent      boolean not null
+  phone        text,
+  extra_adults int  not null default 0 check (extra_adults between 0 and 3),
+  children     int  not null default 0 check (children     between 0 and 4),
+  consent      boolean not null,
+  created_at   timestamptz not null default now()
 );
 
-alter table public.rsvps enable row level security;
+alter table public.registrations enable row level security;
 
--- anon may INSERT only, and only with consent = true
-create policy "public can insert rsvp"
-  on public.rsvps for insert to anon
+-- anon may INSERT only, and only with consent = true. The check constraints
+-- above enforce the party-size caps, so a direct insert cannot exceed them.
+create policy "Anyone can register"
+  on public.registrations for insert to anon
   with check (consent = true);
 -- (no select / update / delete policy for anon → denied by default)
 
--- View respects RLS: anon has no SELECT on rsvps, so with security_invoker returns nothing to anon; organisers read via dashboard/service_role (bypasses RLS)
-create view public.rsvp_summary
+-- Admin dashboard: invited (authenticated) organiser accounts read everything.
+create policy "authenticated can read registrations"
+  on public.registrations for select to authenticated
+  using (true);
+
+-- registration_summary -------------------------------------------------
+-- Organiser view with the registrant folded into the adult count.
+-- security_invoker = on, so anon (no select policy) sees nothing;
+-- service_role bypasses RLS either way.
+create view public.registration_summary
   with (security_invoker = on)
   as
-  select created_at, full_name, email, phone, city,
-         adults, children, (adults + children) as party_size,
-         darshan_slot, notes
-  from public.rsvps
+  select id, created_at, name, email, phone,
+         extra_adults + 1                as adults,
+         children,
+         extra_adults + children + 1     as party_size
+  from public.registrations
   order by created_at desc;
 
--- keepalive ----------------------------------------------------------
-create table public.keepalive (
+-- keepalive ------------------------------------------------------------
+-- Pinged by the Vercel cron job (/api/keepalive) so Supabase does not pause
+-- the free-tier project. Left untouched by the schema change above.
+create table if not exists public.keepalive (
   id         bigint generated always as identity primary key,
   note       text,
   created_at timestamptz not null default now()

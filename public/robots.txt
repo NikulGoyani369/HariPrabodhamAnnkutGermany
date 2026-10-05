@@ -1,6 +1,5 @@
-# PLACEHOLDER — replace your-domain.example with the deployed host
 User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://your-domain.example/sitemap.xml
+Sitemap: https://thedivinespark.de/sitemap.xml
