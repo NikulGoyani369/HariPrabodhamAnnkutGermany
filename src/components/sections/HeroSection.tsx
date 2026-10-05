@@ -36,8 +36,9 @@ export default function HeroSection() {
         <Typography sx={s.highlight}>{EVENT.highlight}</Typography>
 
         <Box sx={s.metaRow}>
-          {EVENT.dateLabel}&nbsp;·&nbsp;{EVENT.venueName}&nbsp;·&nbsp;
-          {EVENT.city}
+          {EVENT.dateLabel}&nbsp;·&nbsp;{EVENT.timeLabel}
+          <br />
+          {EVENT.venueName}, Germany
         </Box>
 
         {registrationOpen ? (

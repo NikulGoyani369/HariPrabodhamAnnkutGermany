@@ -57,7 +57,9 @@ export const heroStyles: Record<string, SxProps<Theme>> = {
     mt: { xs: 1.5, md: 2 },
     fontFamily: '"GC Commune", serif',
     fontWeight: 600,
-    fontSize: { xs: '2.05rem', md: '1.3rem' },
+    // Scales with the viewport on mobile so the line never wraps.
+    fontSize: { xs: 'min(2.05rem, 4.6vw)', md: '1.3rem' },
+    whiteSpace: 'nowrap',
     letterSpacing: '0.02em',
     color: '#DE7B8E',
   },

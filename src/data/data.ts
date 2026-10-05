@@ -9,6 +9,7 @@ export const EVENT = {
   highlight: 'See · Live · Share – The Divine',
   dateISO: '2026-10-24T09:00:00+01:00', // PLACEHOLDER
   dateLabel: '24 October 2026', // PLACEHOLDER
+  timeLabel: '05:00 PM to 07:30 PM', // PLACEHOLDER
   venueName:
     'Lakeside Convention Center Berlin Tegel, Wilkestraße 1, 13507 Berlin', // PLACEHOLDER
   city: 'Berlin, Germany', // PLACEHOLDER
@@ -33,7 +34,7 @@ export const GLANCE: { icon: string; title: string; lines: string[] }[] = [
   {
     icon: '📅',
     title: 'Date & Time',
-    lines: ['24 October 2026', '05:00 PM to 07:30 PM'],
+    lines: [EVENT.dateLabel, EVENT.timeLabel],
   },
   {
     icon: '📍',
